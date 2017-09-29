@@ -44,6 +44,127 @@ import java.util.List;
  */
 public class ArabicPrediction {
 
+	public void arabicPrediction (File featuresFile) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+      
+        Features features = mapper.readValue(featuresFile, Features.class);
+        
+    	int testingSampleCount = features.segments.size();
+
+    	  INDArray predictionInput = Nd4j.zeros(testingSampleCount, 12);
+    	  INDArray labels = Nd4j.zeros(testingSampleCount, 30);
+    	  for (int i = 0; i<features.segments.size();i++){
+          	Segment segment = features.segments.get(i); 
+          	
+          	predictionInput.putScalar(new int[]{i, 0}, 2.0*(segment.dotCount/3.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 1}, 2.0*(segment.dotPos/2.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 2}, 2.0*((segment.normalizedBodyChain[0]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 3}, 2.0*((segment.normalizedBodyChain[1]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 4}, 2.0*((segment.normalizedBodyChain[2]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 5}, 2.0*((segment.normalizedBodyChain[3]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 6}, 2.0*((segment.normalizedBodyChain[4]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 7}, 2.0*((segment.normalizedBodyChain[5]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 8}, 2.0*((segment.normalizedBodyChain[6]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 9}, 2.0*((segment.normalizedBodyChain[7]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 10}, 2.0*((segment.normalizedBodyChain[8]-1.0)/7.0)-1.0);
+            predictionInput.putScalar(new int[]{i, 11}, 2.0*((segment.normalizedBodyChain[9]-1.0)/7.0)-1.0);
+            // then the first output fires for false, and the second is 0 (see class
+            // comment)
+            
+            labels.putScalar(new int[]{i, segment.labelId}, 1);
+        }
+        
+          	
+        DataSet ds = new DataSet(predictionInput, labels);
+        
+        MultiLayerNetwork net = ModelSerializer.restoreMultiLayerNetwork(new File("D:\\filetraining\\zhangsuen\\nnmodel.zip"));
+       
+        // PREDIKSI -----------------------
+
+        // create output for every training sample
+        INDArray predictionOutput = net.output(predictionInput); //prediksi
+//        System.out.println("test:"+predictionOutput.amax(0));
+          System.out.println("Prediction output: " + predictionOutput);
+
+        System.out.println();
+        System.out.println();
+        INDArray maxIdxPerRow = predictionOutput.argMax(0);// ambil indeks maksimum ditiap baris
+        for (int i =0; i<maxIdxPerRow.length(); i++) {
+            float curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di nilai indeks ke i
+
+            if (curIdx==0){
+                System.out.println("ain");
+            }else if (curIdx==1){
+                System.out.println("alif");
+            } else if (curIdx==2){
+                System.out.println("ba");
+            } else if (curIdx==3){
+                System.out.println("dal");
+            } else if (curIdx==4){
+                System.out.println("dhad");
+            }else if (curIdx==5){
+                System.out.println("dzal");
+            }else if (curIdx==6){
+                System.out.println("dzo");
+            }else if (curIdx==7){
+                System.out.println("fa");
+            }else if (curIdx==8){
+                System.out.println("ghoin");
+            }else if (curIdx==9){
+                System.out.println("hamzah");
+            }else if (curIdx==10){
+                System.out.println("ha");
+            }else if (curIdx==11){
+                System.out.println("ha besar");
+            }else if(curIdx==12){
+                System.out.println("jim");
+            }else if (curIdx==13){
+                System.out.println("kaf");
+            }else if (curIdx==14){
+                System.out.println("kha");
+            }else if (curIdx==15){
+                System.out.println("lam");
+            }else if(curIdx==16){
+                System.out.println("mim");
+            }else if (curIdx==17){
+                System.out.println("nun");
+            }else if (curIdx==18){
+                System.out.println("qaf");
+            }else if (curIdx==19){
+                System.out.println("ra");
+            }else if (curIdx==20){
+                System.out.println("sad");
+            }else if (curIdx==21){
+                System.out.println("sheen");
+            }else if (curIdx==22){
+                System.out.println("sin ");
+            }else if (curIdx==23){
+                System.out.println("ta marbuto");
+            }else if (curIdx==24){
+                System.out.println("ta");
+            }else if (curIdx==25){
+                System.out.println("tho");
+            }else if (curIdx==26){
+                System.out.println("tsa");
+            }else if (curIdx==27){
+                System.out.println("wau");
+            }else if (curIdx==28){
+                System.out.println("ya");
+            }else if (curIdx==29){
+                System.out.println("za");
+            }
+
+          //  System.out.println(curIdx);
+        }
+
+
+        // let Evaluation prints stats how often the right output had the
+        // highest value
+        System.out.println("Testing samples: " + testingSampleCount );
+        Evaluation eval = new Evaluation(30);
+        eval.eval(ds.getLabels(), predictionOutput);
+        System.out.println(eval.stats());
+	}
     static class Features {
         List<Segment> segments = new ArrayList<>();
 
@@ -162,125 +283,8 @@ public class ArabicPrediction {
     }
 
     public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-    	ObjectMapper mapper = new ObjectMapper();
-        File featuresFile = new File("D:\\filetesting\\zhangsuen\\zhangsuen.Features.json");
-        Features features = mapper.readValue(featuresFile, Features.class);
-        
-    	int testingSampleCount = features.segments.size();
-
-    	  INDArray predictionInput = Nd4j.zeros(testingSampleCount, 12);
-    	  INDArray labels = Nd4j.zeros(testingSampleCount, 30);
-    	  for (int i = 0; i<features.segments.size();i++){
-          	Segment segment = features.segments.get(i); 
-          	
-          	predictionInput.putScalar(new int[]{i, 0}, 2.0*(segment.dotCount/3.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 1}, 2.0*(segment.dotPos/2.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 2}, 2.0*((segment.normalizedBodyChain[0]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 3}, 2.0*((segment.normalizedBodyChain[1]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 4}, 2.0*((segment.normalizedBodyChain[2]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 5}, 2.0*((segment.normalizedBodyChain[3]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 6}, 2.0*((segment.normalizedBodyChain[4]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 7}, 2.0*((segment.normalizedBodyChain[5]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 8}, 2.0*((segment.normalizedBodyChain[6]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 9}, 2.0*((segment.normalizedBodyChain[7]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 10}, 2.0*((segment.normalizedBodyChain[8]-1.0)/7.0)-1.0);
-            predictionInput.putScalar(new int[]{i, 11}, 2.0*((segment.normalizedBodyChain[9]-1.0)/7.0)-1.0);
-            // then the first output fires for false, and the second is 0 (see class
-            // comment)
-            
-            labels.putScalar(new int[]{i, segment.labelId}, 1);
-        }
-        
-          	
-        DataSet ds = new DataSet(predictionInput, labels);
-        
-        MultiLayerNetwork net = ModelSerializer.restoreMultiLayerNetwork(new File("D:\\filetraining\\zhangsuen\\nnmodel.zip"));
-       
-        // PREDIKSI -----------------------
-
-        // create output for every training sample
-        INDArray predictionOutput = net.output(predictionInput); //prediksi
-//        System.out.println("test:"+predictionOutput.amax(0));
-          System.out.println("Prediction output: " + predictionOutput);
-
-        System.out.println();
-        System.out.println();
-        INDArray maxIdxPerRow = predictionOutput.argMax(0);// ambil indeks maksimum ditiap baris
-        for (int i =0; i<maxIdxPerRow.length(); i++) {
-            float curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di nilai indeks ke i
-
-            if (curIdx==0){
-                System.out.println("ain");
-            }else if (curIdx==1){
-                System.out.println("alif");
-            } else if (curIdx==2){
-                System.out.println("ba");
-            } else if (curIdx==3){
-                System.out.println("dal");
-            } else if (curIdx==4){
-                System.out.println("dhad");
-            }else if (curIdx==5){
-                System.out.println("dzal");
-            }else if (curIdx==6){
-                System.out.println("dzo");
-            }else if (curIdx==7){
-                System.out.println("fa");
-            }else if (curIdx==8){
-                System.out.println("ghoin");
-            }else if (curIdx==9){
-                System.out.println("hamzah");
-            }else if (curIdx==10){
-                System.out.println("ha");
-            }else if (curIdx==11){
-                System.out.println("ha besar");
-            }else if(curIdx==12){
-                System.out.println("jim");
-            }else if (curIdx==13){
-                System.out.println("kaf");
-            }else if (curIdx==14){
-                System.out.println("kha");
-            }else if (curIdx==15){
-                System.out.println("lam");
-            }else if(curIdx==16){
-                System.out.println("mim");
-            }else if (curIdx==17){
-                System.out.println("nun");
-            }else if (curIdx==18){
-                System.out.println("qaf");
-            }else if (curIdx==19){
-                System.out.println("ra");
-            }else if (curIdx==20){
-                System.out.println("sad");
-            }else if (curIdx==21){
-                System.out.println("sheen");
-            }else if (curIdx==22){
-                System.out.println("sin ");
-            }else if (curIdx==23){
-                System.out.println("ta marbuto");
-            }else if (curIdx==24){
-                System.out.println("ta");
-            }else if (curIdx==25){
-                System.out.println("tho");
-            }else if (curIdx==26){
-                System.out.println("tsa");
-            }else if (curIdx==27){
-                System.out.println("wau");
-            }else if (curIdx==28){
-                System.out.println("ya");
-            }else if (curIdx==29){
-                System.out.println("za");
-            }
-
-          //  System.out.println(curIdx);
-        }
-
-
-        // let Evaluation prints stats how often the right output had the
-        // highest value
-        System.out.println("Testing samples: " + testingSampleCount );
-        Evaluation eval = new Evaluation(30);
-        eval.eval(ds.getLabels(), predictionOutput);
-        System.out.println(eval.stats());
-
+    	  File featuresFile = new File("D:\\filetesting\\zhangsuen\\zhangsuen.Features.json");
+    	  ArabicPrediction arabicprediction = new ArabicPrediction();
+    	  arabicprediction.arabicPrediction(featuresFile);
     }
 }
