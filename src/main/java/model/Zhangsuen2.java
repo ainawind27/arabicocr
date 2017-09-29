@@ -28,7 +28,7 @@ public class Zhangsuen2 {
 		int threshold = OtsuThreshold.getThreshold(imgSrc);
 		
 		binaryImage = new int[widthImg][heightImg];
-		System.out.println("Binarized " + name + ":");
+		System.out.println("Binarized " + name + "...");
 		for (int i = 0; i < widthImg; i++) {
 			for (int j = 0; j < heightImg; j++) {
 				if (new Color(imgSrc.getRGB(i, j)).getRed() <= 150 || new Color(imgSrc.getRGB(i, j)).getGreen() <= 150
@@ -37,9 +37,9 @@ public class Zhangsuen2 {
 				} else {
 					binaryImage[i][j] = 0;
 				}
-				System.out.print(binaryImage[i][j]);
+//				System.out.print(binaryImage[i][j]);
 			}
-			System.out.println();
+//			System.out.println();
 		}
 		// create LokasiTetangga
 

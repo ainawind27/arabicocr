@@ -21,6 +21,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 
 import thesis.ArabicTraining.Features;
 import thesis.ArabicTraining.Segment;
@@ -43,9 +44,17 @@ import java.util.List;
  * @author Peter Großmann
  */
 public class ArabicPrediction {
-
+	static final List<String> LABELS = ImmutableList.of(
+			"ain", "alif", "ba", "dal", "dhad", 
+			"dzal", "dzo", "fa", "ghoin", "hamzah",
+			"ha", "habesar", "jim", "kaf", "kha",
+			"lam", "mim", "nun", "qaf", "ra", "sad",
+			"sheen", "sin", "tamarbuto", "ta", "tho",
+			"tsa", "wau", "ya", "za"
+			);
 	public void arabicPrediction (File featuresFile) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
+		
       
         Features features = mapper.readValue(featuresFile, Features.class);
         
@@ -88,71 +97,11 @@ public class ArabicPrediction {
 
         System.out.println();
         System.out.println();
-        INDArray maxIdxPerRow = predictionOutput.argMax(0);// ambil indeks maksimum ditiap baris
+        INDArray maxIdxPerRow = predictionOutput.argMax(1);// ambil indeks maksimum ditiap baris
         for (int i =0; i<maxIdxPerRow.length(); i++) {
-            float curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di nilai indeks ke i
+            int curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di nilai indeks ke i
 
-            if (curIdx==0){
-                System.out.println("ain");
-            }else if (curIdx==1){
-                System.out.println("alif");
-            } else if (curIdx==2){
-                System.out.println("ba");
-            } else if (curIdx==3){
-                System.out.println("dal");
-            } else if (curIdx==4){
-                System.out.println("dhad");
-            }else if (curIdx==5){
-                System.out.println("dzal");
-            }else if (curIdx==6){
-                System.out.println("dzo");
-            }else if (curIdx==7){
-                System.out.println("fa");
-            }else if (curIdx==8){
-                System.out.println("ghoin");
-            }else if (curIdx==9){
-                System.out.println("hamzah");
-            }else if (curIdx==10){
-                System.out.println("ha");
-            }else if (curIdx==11){
-                System.out.println("ha besar");
-            }else if(curIdx==12){
-                System.out.println("jim");
-            }else if (curIdx==13){
-                System.out.println("kaf");
-            }else if (curIdx==14){
-                System.out.println("kha");
-            }else if (curIdx==15){
-                System.out.println("lam");
-            }else if(curIdx==16){
-                System.out.println("mim");
-            }else if (curIdx==17){
-                System.out.println("nun");
-            }else if (curIdx==18){
-                System.out.println("qaf");
-            }else if (curIdx==19){
-                System.out.println("ra");
-            }else if (curIdx==20){
-                System.out.println("sad");
-            }else if (curIdx==21){
-                System.out.println("sheen");
-            }else if (curIdx==22){
-                System.out.println("sin ");
-            }else if (curIdx==23){
-                System.out.println("ta marbuto");
-            }else if (curIdx==24){
-                System.out.println("ta");
-            }else if (curIdx==25){
-                System.out.println("tho");
-            }else if (curIdx==26){
-                System.out.println("tsa");
-            }else if (curIdx==27){
-                System.out.println("wau");
-            }else if (curIdx==28){
-                System.out.println("ya");
-            }else if (curIdx==29){
-                System.out.println("za");
-            }
+             System.out.println(i + " - " + features.segments.get(i).name + " -> " + LABELS.get(curIdx));
 
           //  System.out.println(curIdx);
         }
