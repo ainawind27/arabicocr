@@ -277,7 +277,7 @@ public class ArabicPrediction {
 
         // let Evaluation prints stats how often the right output had the
         // highest value
-        System.out.println("Testing samples: " + testingSampleCount);
+        System.out.println("Testing samples: " + testingSampleCount );
         Evaluation eval = new Evaluation(30);
         eval.eval(ds.getLabels(), predictionOutput);
         System.out.println(eval.stats());

@@ -1,3 +1,4 @@
+package thesis;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Thinning1 {
-
-	public static void main(String[] args) throws IOException {
-		String fileLocation = "D:\\filetesting\\";
+	
+	public void thinningZhangSuen(File folder) throws IOException{
+	
 		List<File> queuedFiles = new ArrayList<File>();
 
-		File folder = new File(fileLocation);
+		
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
@@ -40,6 +41,13 @@ public class Thinning1 {
 
 			System.out.println("Written " + thinnedFile.getPath());
 		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		String fileLocation = "D:\\filetesting\\";
+		File folder = new File(fileLocation);
+		Thinning1 thinning = new Thinning1();
+		thinning.thinningZhangSuen(folder);
 	}
 
 }
