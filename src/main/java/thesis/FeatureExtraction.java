@@ -1,6 +1,8 @@
+package thesis;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -8,12 +10,78 @@ import java.util.List;
 import model.Point;
 import javax.imageio.ImageIO;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.ImmutableList;
 
 public class FeatureExtraction {
-	
+	public void extractFeatures(File folder) throws IOException{
+		Features features = new Features();
+
+		List<File> queuedFiles = new ArrayList<File>();
+		
+		File[] listOfFiles = folder.listFiles();
+		for (int i = 0; i < listOfFiles.length; i++) {
+			File file = listOfFiles[i];
+			if (file.isFile() && file.getName().toLowerCase().endsWith(".png")) {
+				queuedFiles.add(file);
+			}
+		}
+		
+		for (File inputFile : queuedFiles) {
+			// T_Binerisasi_dan_chaincode_1.binerisasi("D:\\lam.PNG", 127);
+			System.out.println("Processing " + inputFile + "...");
+			Segment segment = new Segment();
+			segment.setName(inputFile.getName());
+			int[][] chaincode = T_Binerisasi_dan_chaincode_1.binerisasi(inputFile.getPath(), 127);
+			ChainCode c = new ChainCode();
+			List<ChainInfo> chains = c.chain3(chaincode);
+			segment.getChains().addAll(chains);
+			System.out.println(chains);
+			int dotPos = 0;
+			int dotCount = 0;
+			String bodyChain = null;
+			for (int i = 0; i < chains.size(); i++) {
+				if (chains.get(i).chain.length() >= 17 &&
+						(null == bodyChain || chains.get(i).chain.length() > bodyChain.length())) {
+					bodyChain = chains.get(i).chain;
+				} else {
+					dotCount++;
+					dotPos = chains.get(i).yPos;
+				}
+			}
+			segment.setDotPos(dotPos);
+			segment.setDotCount(dotCount);
+			segment.setBodyChain(bodyChain);
+			System.out.println("Dot count: " + dotCount);
+			System.out.println("Dot position: " + dotPos);
+			System.out.println("Body chain code: " + bodyChain);
+			
+			Normalisasi normalisasi = new Normalisasi();
+			segment.setNormalizedBodyChain(normalisasi.normalizedFinish(bodyChain));
+			
+			String[] splitted = inputFile.getName().split("[_.]");
+			if (splitted.length == 5) {
+				int labelId = LABELS.indexOf(splitted[1]);
+				if (-1 != labelId) {
+					segment.setLabelId(labelId);
+					segment.setLabel(LABELS.get(labelId));
+				}
+			}
+			
+			features.getSegments().add(segment);
+		}
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		String json = mapper.writeValueAsString(features);
+		System.out.println("Features.json:");
+		System.out.println(json);
+		File outputFile = new File(folder, folder.getName() + ".Features.json");
+		System.out.println("Writing output to " + outputFile);
+		mapper.writeValue(outputFile, features);
+	}
 	static final List<String> LABELS = ImmutableList.of(
 			"ain", "alif", "ba", "dal", "dhad", 
 			"dzal", "dzo", "fa", "ghoin", "hamzah",
@@ -173,70 +241,9 @@ public class FeatureExtraction {
 	}
 
 	static public void main(String args[]) throws Exception {
-		Features features = new Features();
-
-		List<File> queuedFiles = new ArrayList<File>();
 		File folder = new File("D:\\filetesting\\zhangsuen");
-		File[] listOfFiles = folder.listFiles();
-		for (int i = 0; i < listOfFiles.length; i++) {
-			File file = listOfFiles[i];
-			if (file.isFile() && file.getName().toLowerCase().endsWith(".png")) {
-				queuedFiles.add(file);
-			}
-		}
-		
-		for (File inputFile : queuedFiles) {
-			// T_Binerisasi_dan_chaincode_1.binerisasi("D:\\lam.PNG", 127);
-			System.out.println("Processing " + inputFile + "...");
-			Segment segment = new Segment();
-			segment.setName(inputFile.getName());
-			int[][] chaincode = T_Binerisasi_dan_chaincode_1.binerisasi(inputFile.getPath(), 127);
-			ChainCode c = new ChainCode();
-			List<ChainInfo> chains = c.chain3(chaincode);
-			segment.getChains().addAll(chains);
-			System.out.println(chains);
-			int dotPos = 0;
-			int dotCount = 0;
-			String bodyChain = null;
-			for (int i = 0; i < chains.size(); i++) {
-				if (chains.get(i).chain.length() >= 17 &&
-						(null == bodyChain || chains.get(i).chain.length() > bodyChain.length())) {
-					bodyChain = chains.get(i).chain;
-				} else {
-					dotCount++;
-					dotPos = chains.get(i).yPos;
-				}
-			}
-			segment.setDotPos(dotPos);
-			segment.setDotCount(dotCount);
-			segment.setBodyChain(bodyChain);
-			System.out.println("Dot count: " + dotCount);
-			System.out.println("Dot position: " + dotPos);
-			System.out.println("Body chain code: " + bodyChain);
-			
-			Normalisasi normalisasi = new Normalisasi();
-			segment.setNormalizedBodyChain(normalisasi.normalizedFinish(bodyChain));
-			
-			String[] splitted = inputFile.getName().split("[_.]");
-			if (splitted.length == 5) {
-				int labelId = LABELS.indexOf(splitted[1]);
-				if (-1 != labelId) {
-					segment.setLabelId(labelId);
-					segment.setLabel(LABELS.get(labelId));
-				}
-			}
-			
-			features.getSegments().add(segment);
-		}
-		
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		String json = mapper.writeValueAsString(features);
-		System.out.println("Features.json:");
-		System.out.println(json);
-		File outputFile = new File(folder, folder.getName() + ".Features.json");
-		System.out.println("Writing output to " + outputFile);
-		mapper.writeValue(outputFile, features);
+		FeatureExtraction featureextraction = new FeatureExtraction();
+		featureextraction.extractFeatures(folder);
 	}
 	
 	static class ChainCode {

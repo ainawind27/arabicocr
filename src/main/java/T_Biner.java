@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import model.Point;
+import thesis.Normalisasi;
+import thesis.T_Binerisasi_dan_chaincode_1;
+
 import javax.imageio.ImageIO;
 
 public class T_Biner {

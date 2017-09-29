@@ -1,3 +1,4 @@
+package thesis;
 public class Normalisasi {
 
 	static int [] normalizedFinish (String bodyChain){
