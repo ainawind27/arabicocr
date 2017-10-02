@@ -569,6 +569,10 @@ public class SegmentatorChar {
     public BinaryImageShell getChar_withSecondary(int index) {
         return this.fullChars[index];
     }
+    
+    public int getChar_withSecondaryLength() {
+    	return this.fullChars.length;
+    }
 
     /**
      * Mengembalikan blok yang menyimpan objek sekunder pada huruf dengan nomor
