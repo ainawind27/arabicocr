@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Thinning1 {
-	
-	public void thinningZhangSuen(File folder) throws IOException{
-	
+	public List<File> listFiles(File folder){
 		List<File> queuedFiles = new ArrayList<File>();
 
-		
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
@@ -24,7 +21,11 @@ public class Thinning1 {
 				queuedFiles.add(file);
 			}
 		}
-
+		return queuedFiles;
+	}
+	
+	public List<File> thinning(File folder, List<File> queuedFiles) throws IOException {
+		final List<File> thinnedFiles = new ArrayList<File>();
 		File targetFolder = new File(folder, "zhangsuen");
 		targetFolder.mkdirs();
 		for (int i = 0; i < queuedFiles.size(); i++) {
@@ -38,9 +39,16 @@ public class Thinning1 {
 
 			File thinnedFile = new File(targetFolder, queuedFiles.get(i).getName().replace(".", "_zhangsuen."));
 			ImageIO.write(thinImage, "png", thinnedFile);
+			thinnedFiles.add(thinnedFile);
 
 			System.out.println("Written " + thinnedFile.getPath());
 		}
+		return thinnedFiles;
+	}
+	
+	public void thinningZhangSuen(File folder) throws IOException {
+		List<File> queuedFiles = listFiles(folder);
+		thinning(folder, queuedFiles);
 	}
 
 	public static void main(String[] args) throws IOException {

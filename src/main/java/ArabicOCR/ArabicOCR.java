@@ -28,9 +28,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import HMMFInal.*;
 import utils.ChainCode;
@@ -41,6 +42,8 @@ import utils.STDChainCode;
  * @author gazandic
  */
 public class ArabicOCR {
+	private static final Logger LOG = LoggerFactory.getLogger(ArabicOCR.class);
+	
 	public static void getBoundaryFt(BinaryImageShell main, double[] distribution) {
 		/* Boundary Ft. */
 		ArrayList<Integer> boundaryChainCode = FeatureExtraction.chainCodeBoundary(main);
@@ -106,7 +109,38 @@ public class ArabicOCR {
 
 		return process3Image(main, mainWithSec, mainThin, segCharacter, baseLine, j);
 	}
-
+	
+	/**
+	 * segmentasi huruf untuk satu kesambungan
+	 * @param meso
+	 * @param segSubword
+	 * @param i
+	 * @param fileLocation
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<File> segmentizeSubword(MainbodySOSet meso, SegmentatorSubword segSubword, int i, 
+												File fileLocation) throws Exception {
+		final List<File> segmentFiles = new ArrayList<>();
+		SegmentatorChar segCharacter = new SegmentatorChar(meso);
+		segCharacter.zidouri();
+		int size = segCharacter.getSegmentSize();
+		for (int j = 0; j < size; j++) {
+			try {				
+				BinaryImageShell charWithSec = segCharacter.getChar_withSecondary(j);
+				String fname = String.format("%02d-%02d.png", i, j);
+				
+				File segmentFile = new File(fileLocation, "segments\\" + fname);
+				segmentFile.getParentFile().mkdirs();
+				ImageIO.write(charWithSec.getBufferedImage(), "png", segmentFile);
+				segmentFiles.add(segmentFile);
+			} catch (Exception e) {
+				LOG.error("Cannot segmentize {}", meso, e);
+			}
+		}
+		return segmentFiles;
+	}
+	
 	public static String processSubword(MainbodySOSet meso, SegmentatorSubword segSubword, int i) throws Exception {
 		SegmentatorChar segCharacter = new SegmentatorChar(meso);
 		segCharacter.zidouri();
@@ -257,7 +291,7 @@ public class ArabicOCR {
 				String s = processSubword(meso, segSubword, i);
 				results.add(s);
 			} catch (Exception ex) {
-				Logger.getLogger(ArabicOCR.class.getName()).log(Level.SEVERE, null, ex);
+				LOG.error("Cannot process {}", meso, ex);
 			}
 		}
 		for (int j = 0; j < results.size() - 1; j++) {
@@ -266,6 +300,32 @@ public class ArabicOCR {
 		// "qafdzalnunnunqafalifalifnundzaldzalnunqafalifalifhadzalsheendzal"
 		result += results.get(results.size() - 1);
 		return result;
+	}
+
+	/**
+	 * melakukan segmentasi zidouri untuk satu kalimat
+	 * @param image
+	 * @param fileLocation
+	 * @return
+	 * 
+	 */
+	public static List<File> segmentize(BinaryImageShell image, File fileLocation) {
+		SegmentatorSubword segSubword = new SegmentatorSubword(image);
+		segSubword.blockSegment();
+		segSubword.groupBlocks();
+		MainbodySOSet[] subwordBlocks = segSubword.getAllSegments();
+		int i = 0;
+		ArrayList<File> results = new ArrayList<>();
+		for (MainbodySOSet meso : subwordBlocks) {
+			i++;
+			try {
+				List<File> subSegments = segmentizeSubword(meso, segSubword, i, fileLocation);
+				results.addAll(subSegments);
+			} catch (Exception ex) {
+				LOG.error("Cannot process {}", meso, ex);
+			}
+		}
+		return results;
 	}
 
 }

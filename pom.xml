@@ -35,7 +35,6 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
 		</dependency>
 
 		<!-- ND4J backend. You need one in every DL4J project. Normally define 

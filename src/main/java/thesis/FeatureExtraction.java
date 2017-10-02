@@ -16,9 +16,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.ImmutableList;
 
 public class FeatureExtraction {
-	public void extractFeatures(File folder) throws IOException{
-		Features features = new Features();
-
+	
+	public List<File> listFiles (File folder){
 		List<File> queuedFiles = new ArrayList<File>();
 		
 		File[] listOfFiles = folder.listFiles();
@@ -28,7 +27,11 @@ public class FeatureExtraction {
 				queuedFiles.add(file);
 			}
 		}
-		
+		return queuedFiles;
+	}
+	
+	public void extractfeatures (File folder, List<File> queuedFiles) throws IOException{
+		Features features = new Features();
 		for (File inputFile : queuedFiles) {
 			// T_Binerisasi_dan_chaincode_1.binerisasi("D:\\lam.PNG", 127);
 			System.out.println("Processing " + inputFile + "...");
@@ -82,6 +85,12 @@ public class FeatureExtraction {
 		System.out.println("Writing output to " + outputFile);
 		mapper.writeValue(outputFile, features);
 	}
+	
+	public void extractFeatures(File folder) throws IOException{
+		List<File> queuedFiles = listFiles(folder);
+		extractfeatures(folder, queuedFiles);
+	}
+	
 	static final List<String> LABELS = ImmutableList.of(
 			"ain", "alif", "ba", "dal", "dhad", 
 			"dzal", "dzo", "fa", "ghoin", "hamzah",
@@ -295,6 +304,7 @@ public class FeatureExtraction {
 				if (null == p) {
 					break;
 				}
+				System.out.println("First pixel: ["+ p.getY() + "," + p.getX() +"]");
 
 				if (p.getY() < working.length * 2 / 5) {
 					yPos = 0;
@@ -375,8 +385,8 @@ public class FeatureExtraction {
 			Point result = null;
 			boolean firstPixelFound = false;
 
-			for (int y = 1; y < input.length - 1; y++) {
-				for (int x = 1; x < input[y].length - 1; x++) {
+			for (int y = 0; y < input.length; y++) {
+				for (int x = 0; x < input[y].length; x++) {
 					if (input[y][x] == 1) {
 						// System.out.println(input[x][y]);
 						int[] n = neighbors(input, new Point(x, y));
@@ -413,21 +423,31 @@ public class FeatureExtraction {
 
 			return result;
 		}
+		
+		private int safeGet(int[][] input, int y, int x) {
+			if (0 <= y && y < input.length && 0 <= x && x < input[y].length) {
+				return input[y][x];
+			} else {
+				return 0;
+			}
+		}
 
 		private int[] neighbors(int[][] input, Point p) { // mencari tetangga
-			try {
-				int x = p.getX();
-				int y = p.getY();
-				int[] result = new int[] { // arah tetangga dijelaskan dicatatan
-											// aina
-						input[y - 1][x - 1], input[y - 1][x], input[y - 1][x + 1], input[y][x + 1], input[y + 1][x + 1],
-						input[y + 1][x], input[y + 1][x - 1], input[y][x - 1] };
+			int x = p.getX();
+			int y = p.getY();
+			int[] result = new int[] { // arah tetangga dijelaskan dicatatan
+										// aina
+					safeGet(input, y - 1, x - 1),
+					safeGet(input, y - 1, x),
+					safeGet(input, y - 1, x + 1),
+					safeGet(input, y, x + 1),
+					safeGet(input, y + 1, x + 1),
+					safeGet(input, y + 1, x),
+					safeGet(input, y + 1, x - 1),
+					safeGet(input, y, x - 1) 
+				};
 
-				return result;
-			} catch (Exception ex) {
-				return new int[] {};
-			}
-
+			return result;
 		}
 
 		private int sumIntArray(int[] input) { // menjumlahkan tetangga
