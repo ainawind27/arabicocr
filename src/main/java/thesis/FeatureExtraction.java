@@ -1,4 +1,5 @@
 package thesis;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,10 +17,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.ImmutableList;
 
 public class FeatureExtraction {
-	
-	public List<File> listFiles (File folder){
+
+	public List<File> listFiles(File folder) {
 		List<File> queuedFiles = new ArrayList<File>();
-		
+
 		File[] listOfFiles = folder.listFiles();
 		for (int i = 0; i < listOfFiles.length; i++) {
 			File file = listOfFiles[i];
@@ -29,8 +30,8 @@ public class FeatureExtraction {
 		}
 		return queuedFiles;
 	}
-	
-	public void extractfeatures (File folder, List<File> queuedFiles) throws IOException{
+
+	public void extractfeatures(File folder, List<File> queuedFiles) throws IOException {
 		Features features = new Features();
 		for (File inputFile : queuedFiles) {
 			// T_Binerisasi_dan_chaincode_1.binerisasi("D:\\lam.PNG", 127);
@@ -46,8 +47,8 @@ public class FeatureExtraction {
 			int dotCount = 0;
 			String bodyChain = null;
 			for (int i = 0; i < chains.size(); i++) {
-				if (chains.get(i).chain.length() >= 17 &&
-						(null == bodyChain || chains.get(i).chain.length() > bodyChain.length())) {
+				if (chains.get(i).chain.length() >= 17
+						&& (null == bodyChain || chains.get(i).chain.length() > bodyChain.length())) {
 					bodyChain = chains.get(i).chain;
 				} else {
 					dotCount++;
@@ -60,22 +61,25 @@ public class FeatureExtraction {
 			System.out.println("Dot count: " + dotCount);
 			System.out.println("Dot position: " + dotPos);
 			System.out.println("Body chain code: " + bodyChain);
-			
+
 			Normalisasi normalisasi = new Normalisasi();
 			segment.setNormalizedBodyChain(normalisasi.normalizedFinish(bodyChain));
-			
+
 			String[] splitted = inputFile.getName().split("[_.]");
 			if (splitted.length == 5) {
 				int labelId = LABELS.indexOf(splitted[1]);
 				if (-1 != labelId) {
 					segment.setLabelId(labelId);
 					segment.setLabel(LABELS.get(labelId));
+				} else {
+					throw new RuntimeException("Unknown label '" + splitted[1] + 
+							"' for file " + inputFile.getName());
 				}
 			}
-			
+
 			features.getSegments().add(segment);
 		}
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 		String json = mapper.writeValueAsString(features);
@@ -85,20 +89,15 @@ public class FeatureExtraction {
 		System.out.println("Writing output to " + outputFile);
 		mapper.writeValue(outputFile, features);
 	}
-	
-	public void extractFeatures(File folder) throws IOException{
+
+	public void extractFeatures(File folder) throws IOException {
 		List<File> queuedFiles = listFiles(folder);
 		extractfeatures(folder, queuedFiles);
 	}
-	
-	static final List<String> LABELS = ImmutableList.of(
-			"ain", "alif", "ba", "dal", "dhad", 
-			"dzal", "dzo", "fa", "ghoin", "hamzah",
-			"ha", "habesar", "jim", "kaf", "kha",
-			"lam", "mim", "nun", "qaf", "ra", "sad",
-			"sheen", "sin", "tamarbuto", "ta", "tho",
-			"tsa", "wau", "ya", "za"
-			);			
+
+	static final List<String> LABELS = ImmutableList.of("ain", "alif", "ba", "dal", "dhad", "dzal", "dzo", "fa",
+			"ghoin", "hamzah", "ha", "habesar", "jim", "kaf", "kha", "lam", "mim", "nun", "qaf", "ra", "sad", "sheen",
+			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za");
 
 	static class Features {
 		List<Segment> segments = new ArrayList<>();
@@ -107,7 +106,7 @@ public class FeatureExtraction {
 			return segments;
 		}
 	}
-	
+
 	static class Segment {
 		String name;
 		List<ChainInfo> chains = new ArrayList<>();
@@ -117,15 +116,15 @@ public class FeatureExtraction {
 		int dotCount;
 		String label;
 		int labelId;
-		
+
 		public String getName() {
 			return name;
 		}
-		
+
 		public void setName(String name) {
 			this.name = name;
 		}
-		
+
 		public List<ChainInfo> getChains() {
 			return chains;
 		}
@@ -177,16 +176,16 @@ public class FeatureExtraction {
 		public void setLabelId(int labelId) {
 			this.labelId = labelId;
 		}
-		
+
 	}
-	
+
 	static class ChainInfo {
 		String chain;
 		// 0 = di atas
 		// 1 = di tengah
 		// 2 = di bawah
 		int yPos;
-		
+
 		public ChainInfo(String chain, int yPos) {
 			super();
 			this.chain = chain;
@@ -214,7 +213,7 @@ public class FeatureExtraction {
 			return "ChainInfo [chain=" + chain + ", yPos=" + yPos + "]";
 		}
 	}
-	
+
 	static int[][] binerisasi(String fileInput, int threshold) {
 		try {
 			File input = new File(fileInput);
@@ -250,11 +249,11 @@ public class FeatureExtraction {
 	}
 
 	static public void main(String args[]) throws Exception {
-		File folder = new File("D:\\filetesting\\zhangsuen");
+		File folder = new File("D:\\filetraining\\zhangsuen");
 		FeatureExtraction featureextraction = new FeatureExtraction();
 		featureextraction.extractFeatures(folder);
 	}
-	
+
 	static class ChainCode {
 
 		String getString(int[][] input) {
@@ -271,7 +270,7 @@ public class FeatureExtraction {
 		static class Fork {
 			String backwardChain = "";
 			int x, y;
-			
+
 			public Fork(int x, int y) {
 				super();
 				this.x = x;
@@ -292,19 +291,22 @@ public class FeatureExtraction {
 				System.out.println("Working State " + results.size() + ":");
 				String vis = getString(working);
 				System.out.print(vis);
-				
+
 				String result = "";
 				int yPos = 0;
-				boolean done = false; // selagi masih ada yg ditelusuri dia lanjut
+				boolean done = false; // selagi masih ada yg ditelusuri dia
+										// lanjut
 										// terus
-				Point p = findFirstPixel(working); // mencari titik hitam pertama,
+				Point p = findFirstPixel(working); // mencari titik hitam
+													// pertama,
 													// buat objek p
-													// yang isinya hasil dari fungsi
+													// yang isinya hasil dari
+													// fungsi
 													// findFirstPixel
 				if (null == p) {
 					break;
 				}
-				System.out.println("First pixel: ["+ p.getY() + "," + p.getX() +"]");
+				System.out.println("First pixel: [" + p.getY() + "," + p.getX() + "]");
 
 				if (p.getY() < working.length * 2 / 5) {
 					yPos = 0;
@@ -319,7 +321,7 @@ public class FeatureExtraction {
 				Deque<Fork> forks = new ArrayDeque<>();
 				while (!done) { // ketika done true maka berhenti
 					vis = getString(working);
-					
+
 					// System.out.println(x + " " + y);
 					int[] n = neighbors(working, next);
 					int total = sumIntArray(n);
@@ -329,9 +331,8 @@ public class FeatureExtraction {
 						// bila ada fork, maka kembali
 						if (!forks.isEmpty()) {
 							Fork fork = forks.pop();
-							System.out.println("Joining from [" + y + "," + x +
-									"] to [" + fork.y + "," + fork.x + "] chain: " + 
-									result + " + " + fork.backwardChain);
+							System.out.println("Joining from [" + y + "," + x + "] to [" + fork.y + "," + fork.x
+									+ "] chain: " + result + " + " + fork.backwardChain);
 							result += fork.backwardChain;
 							x = fork.x;
 							y = fork.y;
@@ -350,7 +351,7 @@ public class FeatureExtraction {
 							}
 						}
 						int direction = nextDirections.pop();
-						
+
 						// bila bercabang, maka ingat Fork baru ke dalam stack
 						if (!nextDirections.isEmpty()) {
 							System.out.println("Forking at [" + y + "," + x + "] chain: " + result);
@@ -371,7 +372,7 @@ public class FeatureExtraction {
 						y = next.getY();
 					}
 				}
-				
+
 				// add chaincode to results
 				System.out.println("Detected chain " + results.size() + ": " + result);
 				results.add(new ChainInfo(result, yPos));
@@ -423,7 +424,7 @@ public class FeatureExtraction {
 
 			return result;
 		}
-		
+
 		private int safeGet(int[][] input, int y, int x) {
 			if (0 <= y && y < input.length && 0 <= x && x < input[y].length) {
 				return input[y][x];
@@ -437,15 +438,9 @@ public class FeatureExtraction {
 			int y = p.getY();
 			int[] result = new int[] { // arah tetangga dijelaskan dicatatan
 										// aina
-					safeGet(input, y - 1, x - 1),
-					safeGet(input, y - 1, x),
-					safeGet(input, y - 1, x + 1),
-					safeGet(input, y, x + 1),
-					safeGet(input, y + 1, x + 1),
-					safeGet(input, y + 1, x),
-					safeGet(input, y + 1, x - 1),
-					safeGet(input, y, x - 1) 
-				};
+					safeGet(input, y - 1, x - 1), safeGet(input, y - 1, x), safeGet(input, y - 1, x + 1),
+					safeGet(input, y, x + 1), safeGet(input, y + 1, x + 1), safeGet(input, y + 1, x),
+					safeGet(input, y + 1, x - 1), safeGet(input, y, x - 1) };
 
 			return result;
 		}

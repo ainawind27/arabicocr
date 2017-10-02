@@ -17,6 +17,6 @@ public class SingleANNPrediction {
 		featureextraction.extractFeatures(folder1);
 		
 		ArabicPrediction arabicprediction = new ArabicPrediction();
-		arabicprediction.arabicPrediction(featuresFile);
+		arabicprediction.arabicPrediction(featuresFile, true);
 	}
 }

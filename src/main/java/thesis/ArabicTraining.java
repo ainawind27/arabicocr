@@ -48,7 +48,7 @@ public class ArabicTraining {
 			"ha", "habesar", "jim", "kaf", "kha",
 			"lam", "mim", "nun", "qaf", "ra", "sad",
 			"sheen", "sin", "tamarbuto", "ta", "tho",
-			"tsa", "wau", "ya", "za"
+			"tsa", "waw", "ya", "za"
 			);
 	
     static class Features {
