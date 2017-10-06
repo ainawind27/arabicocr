@@ -43,6 +43,7 @@ public class Hilditch {
         this.width = originalLetter.getWidth();
         this.height = originalLetter.getHeight();
         this.thinnedLetter = new BinaryImageShell(width, height);
+        this.thinnedLetter.setName(originalLetter.getName() + " thin");
 
         this.hilditch();
         thinnedLetter.updateImage();

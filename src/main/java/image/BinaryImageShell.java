@@ -47,12 +47,12 @@ public class BinaryImageShell extends ImageShell {
 
     public BinaryImageShell(File file) {
         super(file);
+        setName(file.getName());
         this.init();
     }
 
     public BinaryImageShell(String fileName) {
-        super(fileName);
-        this.init();
+        this(new File(fileName));
     }
 
     public BinaryImageShell(int width, int height) {

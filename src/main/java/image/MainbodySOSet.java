@@ -13,31 +13,38 @@ import java.util.ArrayList;
  */
 public class MainbodySOSet {
 
+	String name;
     //Block holder
     RectAndBlackPoints mainbody;
     RectAndBlackPoints mainbody_withSecondary;
     ArrayList<RectAndBlackPoints> secondaries;
     //Image holder
-    BinaryImageShell mainbodyImage;
-    BinaryImageShell mainbody_withSecondaryImage;
+    //BinaryImageShell mainbodyImage;
+//    BinaryImageShell mainbody_withSecondaryImage;
     ArrayList<BinaryImageShell> secondaryImage;
     //Baseline of this subword, extracted from line image
     int baseline = 0;
     int upperY_ofMainBody_relativeToLine = 0;
 
-    public MainbodySOSet(RectAndBlackPoints mainbody) {
+    public MainbodySOSet(String name, RectAndBlackPoints mainbody) {
+    	this.name = name;
         this.mainbody = mainbody;
         this.mainbody_withSecondary = mainbody.clone();
         this.secondaries = new ArrayList<>();
     }
 
-    public MainbodySOSet(RectAndBlackPoints mainbody, ArrayList<RectAndBlackPoints> secondaries) {
+    public MainbodySOSet(String name, RectAndBlackPoints mainbody, ArrayList<RectAndBlackPoints> secondaries) {
+    	this.name = name;
         this.mainbody = mainbody;
         this.secondaries.addAll(secondaries);
         for (RectAndBlackPoints secondary : secondaries) {
             this.mainbody_withSecondary.absorb(secondary);
         }
     }
+    
+    public String getName() {
+		return name;
+	}
 
     public void addSecondaryObject(RectAndBlackPoints secondary) {
         this.secondaries.add(secondary);
@@ -127,4 +134,10 @@ public class MainbodySOSet {
     public int getBaseline() {
         return this.baseline;
     }
+    
+    @Override
+    public String toString() {
+    	return name + "(" + secondaries.size() + "secondaries)";
+    }
+    
 }

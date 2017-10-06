@@ -42,6 +42,7 @@ public class SegmentatorSubword {
 
     // *************************** CONSTRUCTOR ********************************
     public SegmentatorSubword(BinaryImageShell image) {
+    	System.out.println("   Segmenting-subword " + image.getName() + " ...");
         this.image = image;
 
         //Fetch baseline
@@ -230,6 +231,7 @@ public class SegmentatorSubword {
      * mengandung secondary objek.
      */
     public void groupBlocks() {
+    	System.out.println("   Grouping blocks " + image.getName() + " ...");
         //Mengelompokkan setiap blok piksel terhubung berdasarkan ukuran
         for (RectAndBlackPoints rab : this.allConnectedPixelsGroup) {
             int size = rab.getSize();
@@ -253,8 +255,9 @@ public class SegmentatorSubword {
         Collections.sort(this.mainBodyBlocks);
 
         // Menempatkan secondary objek pada mainbody yang menaunginya
+        int subwordId = 0;
         for (RectAndBlackPoints main : mainBodyBlocks) {
-            MainbodySOSet abg = new MainbodySOSet(main);
+            MainbodySOSet abg = new MainbodySOSet("subword" + subwordId, main);
             //Set baseline relative thp posisi vertikal mainbody
             abg.setBaseline(maxBaselinePosition);
             //cek taungan secondary objek
@@ -268,6 +271,10 @@ public class SegmentatorSubword {
             //pengotakan, untuk visualisasi
             image.drawRectangle(abg.getBlock_bodyOnly().getRect(), Color.GREEN);
             image.drawRectangle(abg.getBlock_withSecondary().getRect(), Color.RED);
+            System.out.println("    Subword " + abg);
+            
+            subwordId++;
         }
+        System.out.println("   Grouped " + image.getName() + " into " + subwords.size() + " subwords");
     }
 }
