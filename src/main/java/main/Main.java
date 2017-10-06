@@ -60,7 +60,7 @@ public class Main {
 			total += sum;
 			correctness += (ArabicOCR.test(result, expected_result) * sum);
 			float eachIteration = (float) correctness / total;
-			System.out.println(" " + file.getName() + ": " + expected_result + " -> " + result +
+			System.out.println(" " + file.getName() + ": Expected=" + expected_result + " -> Actual=" + result +
 					" (running correctness: " + eachIteration + ")");
 		}
 		// System.out.println(total);

@@ -274,6 +274,12 @@ public class ArabicOCR {
 
 	// public static segmentate
 
+	/**
+	 * Menghitung proporsi prediksi yang benar.
+	 * @param s
+	 * @param expected
+	 * @return
+	 */
 	public static float test(String s, String expected) {
 		String[] lis = s.split("-");
 		String[] lis2 = expected.split("-");
