@@ -48,7 +48,7 @@ public class ArabicTraining {
 			"ha", "habesar", "jim", "kaf", "kha",
 			"lam", "mim", "nun", "qaf", "ra", "sad",
 			"sheen", "sin", "tamarbuto", "ta", "tho",
-			"tsa", "waw", "ya", "za"
+			"tsa", "waw", "ya", "za","unknown"
 			);
 	
     static class Features {
@@ -181,7 +181,7 @@ public class ArabicTraining {
 
         // correspondending list with expected output values, 4 training samples
         // with data for 2 output-neurons each
-        INDArray labels = Nd4j.zeros(trainingSampleCount, 30);//output untuk setiap sampel
+        INDArray labels = Nd4j.zeros(trainingSampleCount, 31);//output untuk setiap sampel
 
         for (int i = 0; i<features.segments.size();i++){
         	Segment segment = features.segments.get(i); 
@@ -277,7 +277,7 @@ public class ArabicTraining {
         // must be the same amout as neurons in the layer before
         outputLayerBuilder.nIn(12);//jumlah hidden neuron1
         // two neurons in this layer
-        outputLayerBuilder.nOut(30); //jumlah output
+        outputLayerBuilder.nOut(31); //jumlah output
         outputLayerBuilder.activation(Activation.SOFTMAX);
         outputLayerBuilder.weightInit(WeightInit.DISTRIBUTION);
         outputLayerBuilder.dist(new UniformDistribution(0, 1));

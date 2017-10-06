@@ -97,7 +97,7 @@ public class FeatureExtraction {
 
 	static final List<String> LABELS = ImmutableList.of("ain", "alif", "ba", "dal", "dhad", "dzal", "dzo", "fa",
 			"ghoin", "hamzah", "ha", "habesar", "jim", "kaf", "kha", "lam", "mim", "nun", "qaf", "ra", "sad", "sheen",
-			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za");
+			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za", "unknown");
 
 	static class Features {
 		List<Segment> segments = new ArrayList<>();

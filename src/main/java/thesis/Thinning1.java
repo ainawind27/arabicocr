@@ -52,7 +52,7 @@ public class Thinning1 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String fileLocation = "D:\\filetesting\\";
+		String fileLocation = "D:\\filetraining\\";
 		File folder = new File(fileLocation);
 		Thinning1 thinning = new Thinning1();
 		thinning.thinningZhangSuen(folder);

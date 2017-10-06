@@ -48,7 +48,7 @@ import java.util.List;
 public class ArabicPrediction {
 	static final List<String> LABELS = ImmutableList.of("ain", "alif", "ba", "dal", "dhad", "dzal", "dzo", "fa",
 			"ghoin", "hamzah", "ha", "habesar", "jim", "kaf", "kha", "lam", "mim", "nun", "qaf", "ra", "sad", "sheen",
-			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za");
+			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za", "unknown");
 
 	public String[] arabicPrediction(File featuresFile, boolean checkEval) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();

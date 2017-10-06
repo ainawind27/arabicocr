@@ -13,9 +13,23 @@ public class SegmentationANNPrediction {
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
 		File input = new File(fileLocation, "test7.png");
+		//test7
 		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
 									"ain", "mim", "habesar", "alif", "lam",
 									"ha", "lam", "waw"};
+		//test
+//		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
+//									"fa", "ya", "alif", "lam", "ha",
+//									"ya", "alif", "tamarbuto"};
+		//test4
+//		String[] expectedResult = { "ain", "mim", "lam" , "waw", "alif", "lam", "dal", "ya", 
+//									"fa", "ya", "alif", "lam", "mim",
+//									"kaf" , "ta", "ba", "unknown"};
+		//test2
+//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain", "lam", 
+//									"ya", "sad", "unknown", "ha", "ta",
+//									"kaf" , "unknown", "ha", "ya" , "alif", "tamarbuto", "tho", 
+//									"ya", "ba", "tamarbuto"};
 		BinaryImageShell image = new BinaryImageShell(input);
 		List<File> segmentFiles = ArabicOCR.segmentize(image, fileLocation);
 		System.out.println(segmentFiles);

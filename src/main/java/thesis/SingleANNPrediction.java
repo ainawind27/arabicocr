@@ -18,5 +18,7 @@ public class SingleANNPrediction {
 		
 		ArabicPrediction arabicprediction = new ArabicPrediction();
 		arabicprediction.arabicPrediction(featuresFile, true);
+		
+		
 	}
 }
