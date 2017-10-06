@@ -8,7 +8,6 @@ import image.BinaryImageShell;
 import image.MainbodySOSet;
 import image.RectAndBlackPoints;
 import image.classifier.FeatureExtraction;
-
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -568,10 +567,6 @@ public class SegmentatorChar {
      */
     public BinaryImageShell getChar_withSecondary(int index) {
         return this.fullChars[index];
-    }
-    
-    public int getChar_withSecondaryLength() {
-    	return this.fullChars.length;
     }
 
     /**

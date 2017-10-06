@@ -1,11 +1,10 @@
-package image.segmentator;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  * @author Albadr
  * @author Gazandi
  */
+package image.segmentator;
 
 import image.BWC;
 import image.BinaryImageShell;

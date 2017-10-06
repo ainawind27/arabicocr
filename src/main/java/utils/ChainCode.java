@@ -10,15 +10,15 @@ public class ChainCode {
 
     public static String chain(int[][] input) {
         String result = "";
-        boolean done = false;
-        Point p = findFirstPixel(input);
+        boolean done = false; //selagi masih ada yg ditelusuri dia lanjut terus
+        Point p = findFirstPixel(input); // mencari titik hitam pertama
 
         if (p != null) {
-            Point next = p;
-            int x = p.getX(), y = p.getY();
+            Point next = p; //bikin titik namanya next isinya sama dengan p
+            int x = p.getX(), y = p.getY();//ambil titik koordinat p
 
-            while (!done) {
-                int[] n = neighbors(input, new Point(x, y));
+            while (!done) { // ketika done true
+                int[] n = neighbors(input, p); 
                 int total = sumIntArray(n);
                 
                 if (total == 0) {

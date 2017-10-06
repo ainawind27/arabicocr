@@ -32,6 +32,33 @@ public class STDChainCode {
         this.additionChar = additionChar;
     }
     
+//    public List<String> standarizeModel2(List<String> chains) {
+//        List<String> resultingChain = new ArrayList<>();
+//        List<List<Integer>> lipair = new ArrayList<>();
+//        String current = "";
+//        int sum_partial = 0;
+//        for (int i = 0; i < chains.size(); i++) {
+//            String now = chains.get(i);
+//            sum_partial++;
+//            if (current.equals("") || !current.equals(now)) {
+//                current = now;
+//                if ((float) sum_partial / chains.size() * 10 > 1.0f) {
+//                    List<Integer> pair = new ArrayList<>();
+//                    pair.add(Integer.parseInt(current));
+//                    pair.add(sum_partial);
+//                    lipair.add(pair);
+//                }
+//                sum_partial = 0;
+//            }
+//        }
+//        for (int i=0; i < lipair.size(); i++) {
+//            List<Integer> each = lipair.get(i);
+//            int partial = each.get(1);
+//            Math.round(lipair)
+//        }
+//        return resultingChain;
+//    }
+    
     public List<String> standarizeModel(List<String> chains) {
         List<String> resultingChain = new ArrayList<>();
         for (int i = 0; i < chains.size(); i++){
@@ -75,6 +102,45 @@ public class STDChainCode {
                             j--;
                         }
                         if (chainString.length() <= chainLongStd) break;
+                    }
+                }
+//                System.out.println(chainString);
+                totalSum = 1;
+                while (chainString.length() >= chainLongStd && totalSum > 0) {
+                    totalSum = 0;
+                    for (int j = 0; j < chainString.length() - 3; j+=2) {
+                        try {
+                            char examined1 = chainString.charAt(j);
+                            char examined2 = chainString.charAt(j+1);
+                            char examined3 = chainString.charAt(j+2);
+                            char examined4 = chainString.charAt(j+3);
+                            int sameChar = 0;
+                            while (examined1 == examined3 && examined2 == examined4){
+                                if (sameChar == 0) {
+                                    before = j;
+                                }
+                                j+=2;
+                                sameChar++;
+                                if (j+1>=chainLongStd) break;
+                                try {
+                                    examined1 = chainString.charAt(j);
+                                    examined2 = chainString.charAt(j+1);
+                                    examined3 = chainString.charAt(j+2);
+                                    examined4 = chainString.charAt(j+3);
+                                } catch (Exception e) {
+                                    break;
+                                }                             
+                            }
+                            if (sameChar > 0){
+                                totalSum += sameChar;
+                                chainString = replaceCharAt(chainString,j,"");
+                                chainString = replaceCharAt(chainString,j,"");
+                                j-=2;
+                            }
+                            if (chainString.length() <= chainLongStd) break;
+                        } catch (Exception e) {
+                            break;
+                        }
                     }
                 }
             }

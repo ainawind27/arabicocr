@@ -41,14 +41,7 @@ public class ImageShell extends Component {
      */
     public ImageShell(String fileName) {
         try {
-        	File file = new File(fileName);
-        	if (!file.exists()) {
-        		throw new RuntimeException("File " + file + " harus ada");
-        	}
-        	if (!file.isFile()) {
-        		throw new RuntimeException("File " + file + " harus berupa file, bukan folder");
-        	}
-            image = ImageIO.read(file);
+            image = ImageIO.read(new File(fileName));
             width_x_height = image.getHeight() * image.getWidth();
         } catch (IOException e) {
             Logger.getLogger(ImageShell.class.getName()).log(Level.SEVERE, null, e);

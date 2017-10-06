@@ -2,6 +2,7 @@ package HMMFInal;
 
 import ArabicOCR.ArabicOCR;
 import static ArabicOCR.ArabicOCR.processCharacter;
+import ArabicOCR.DataTrain;
 import image.BinaryImageShell;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,52 +16,52 @@ import utils.segment.zidouri2.Segmentation;
 
 public class Process {
     
-    public static void train2() throws Exception {
-        File dataset = new File(Const.TRAIN_DATA);
-        System.out.println(dataset.getAbsolutePath());
-        System.out.println(dataset.listFiles());
-        for (File dir : dataset.listFiles()) {
-            if (dir.isDirectory()) {
-                for (File minidir : dir.listFiles()) {
-                    if (minidir.isDirectory()) {
-                        for (File file : minidir.listFiles()) {
-                            String name = file.getName().replace(".png","").replace(".jpg","");
-                            String[] listHuruf = name.split("_");
-                            BinaryImageShell tempImage = new BinaryImageShell(file);
-                            tempImage.getRedXList();
-                            for (int j=0; j<listHuruf.length;j++) {
-                                File model = new File(Const.MODEL_DATA + listHuruf[j]);
-                                if (model.exists()) {
-                                    try  {
-//                                        File existingmodel = new File( Const.MODEL_DATA + listHuruf[j] + File.separator + name + ".ser");
-//                                        if (!existingmodel.exists()) {
-                                            int [][] data = ArabicOCR.train2(tempImage, j, listHuruf[j]);
-//                                            System.out.println(Const.MODEL_DATA + listHuruf[j] + File.separator + name + ".ser");
-                                            
-                                            if (data != null && data.length > 0) {
+//    public static void train2() throws Exception {
+//        File dataset = new File(Const.TRAIN2_DATA);
+//        System.out.println(dataset.getAbsolutePath());
+//        System.out.println(dataset.listFiles());
+//        for (File dir : dataset.listFiles()) {
+//            if (dir.isDirectory()) {
+//                for (File minidir : dir.listFiles()) {
+//                    if (minidir.isDirectory()) {
+//                        for (File file : minidir.listFiles()) {
+//                            String name = file.getName().replace(".png","").replace(".jpg","");
+//                            String[] listHuruf = name.split("_");
+//                            BinaryImageShell tempImage = new BinaryImageShell(file);
+//                            tempImage.getRedXList();
+//                            for (int j=0; j<listHuruf.length;j++) {
+//                                File model = new File(Const.MODEL_DATA + listHuruf[j]);
+//                                if (model.exists()) {
+//                                    try  {
+////                                        File existingmodel = new File( Const.MODEL_DATA + listHuruf[j] + File.separator + name + ".ser");
+////                                        if (!existingmodel.exists()) {
+//                                            int [][] data = ArabicOCR.train2(tempImage, j, listHuruf[j]);
+////                                            System.out.println(Const.MODEL_DATA + listHuruf[j] + File.separator + name + ".ser");
+//                                            
+//                                            if (data != null && data.length > 0) {
 //                                                HiddenMarkov hmm = new HiddenMarkov(data[0].length, Const.NUM_SYMBOLS);
 //                                                hmm.setTrainSeq(data);
 //                                                hmm.train();
 //                                                // write object
 //                                                Serialize.serializeModel(hmm, Const.MODEL_DATA + listHuruf[j] + File.separator + name + ".ser");
-                                            }
-                                            System.out.println();
-                                            
-//                                        }
-                                    } catch (Exception ex) {
-                                        System.out.println("exception at:" + name+listHuruf[j]);
-                                        
-                                        System.out.println(ex);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//                                            }
+//                                            System.out.println();
+//                                            
+////                                        }
+//                                    } catch (Exception ex) {
+//                                        System.out.println("exception at:" + name+listHuruf[j]);
+//                                        
+//                                        System.out.println(ex);
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     public static void train() throws Exception {
         // create model directory for each data
@@ -80,6 +81,7 @@ public class Process {
         for (File file : dataset.listFiles()) {
             if (file.isDirectory()) {
                 String name = file.getName();
+                int[][] finaldata = new int[0][];
                 for (File fImage : file.listFiles()) {
                     if (!fImage.isDirectory()) {
                         // get image's name for naming model
@@ -88,13 +90,21 @@ public class Process {
                         // load the model image
                         BinaryImageShell tempImage = new BinaryImageShell(fImage);
                         int [][] data = ArabicOCR.train(tempImage);
+                        finaldata = DataTrain.getMergeData(finaldata, data);
+                
                         HiddenMarkov hmm = new HiddenMarkov(data[0].length, Const.NUM_SYMBOLS);
                         hmm.setTrainSeq(data);
                         hmm.train();
-//                        // write object
+        //                        // write object
                         Serialize.serializeModel(hmm, Const.MODEL_DATA + name + File.separator + iName + ".ser");
                     }
                 }
+                
+                HiddenMarkov hmm = new HiddenMarkov(finaldata[0].length, Const.NUM_SYMBOLS);
+                hmm.setTrainSeq(finaldata);
+                hmm.train();
+//                        // write object
+                Serialize.serializeModel(hmm, Const.MODEL_DATA + name + File.separator + name + ".ser");
             }
         }
     }

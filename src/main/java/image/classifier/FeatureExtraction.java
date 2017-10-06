@@ -8,7 +8,6 @@ import image.BWC;
 import image.BinaryImageShell;
 import image.RectAndBlackPoints;
 import image.segmentator.Hilditch;
-
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;

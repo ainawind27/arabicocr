@@ -23,46 +23,48 @@ public class DataTrain {
     private int[][] interestPoint;
     private int[][] secCount;
     private int[][] chain;
-    
-    public DataTrain(int[][] interestPoint, int[][]secCount, int[][] chain){
+    private int loop;
+    public DataTrain(int[][] interestPoint, int[][]secCount, int[][] chain, int loop){
         this.interestPoint =interestPoint;
         this.secCount = secCount;
         this.chain = chain;
+        this.loop = loop;
     }
     
-    public int[][] getMergeData(){
-        int totallength = interestPoint.length + secCount.length + chain.length;
-        int aLen = interestPoint.length;
-        int bLen = secCount.length;
-        int cLen = chain.length;
+    public static int[][] getMergeData(int[][] a, int[][] b){
+        int totallength = a.length + b.length ;
+        int aLen = a.length;
+        int bLen = b.length;
         int[][] data = new int[totallength][];
-        System.arraycopy(interestPoint, 0, data, 0, aLen);
-        System.arraycopy(secCount, 0, data, aLen, bLen);
-        System.arraycopy(chain, 0, data, bLen+aLen, cLen);
+        System.arraycopy(a, 0, data, 0, aLen);
+        System.arraycopy(b, 0, data, aLen, bLen);
         return data;
     }
     
     public int[] getDataTrain(int mode){
-        int totallength = (secCount.length * secCount[0].length) + chain[0].length;// +  (interestPoint.length * interestPoint[0].length) ;
+//         +
+        int loopCount = 6;
+        int totallength =  chain[0].length + loopCount ; //(interestPoint.length * interestPoint[0].length * 2) +   (secCount.length * secCount[0].length * 6)
         int[] data = new int[totallength];
         int current = 0;
-//        for (int i=0;i<interestPoint.length;i++) {
-//            int aLen = interestPoint[i].length;
-//            System.arraycopy(interestPoint[i], 0, data, current, aLen);
-//            current+=aLen;
+//        for (int k=0;k<2;k++) {
+//            for (int i=0;i<interestPoint.length;i++) {
+//                int aLen = interestPoint[i].length;
+//                System.arraycopy(interestPoint[i], 0, data, current, aLen);
+//                current+=aLen;
+//            }
 //        }
-        for (int i=0;i<secCount.length;i++) {
-            int bLen = secCount[i].length;
-            System.arraycopy(secCount[i], 0, data, current, bLen);
+//        for (int k=0;k<6;k++) {
+        int[] l = {loop};
+        for (int i=0;i<loopCount;i++) {
+            int bLen = 1;
+            System.arraycopy(l, 0, data, current, bLen);
             current+=bLen;
         }
+//        }
         int cLen = chain[0].length;
         System.arraycopy(chain[0], 0, data, current, cLen);
         current+=cLen;
-        for (int i=0;i<data.length;i++) {
-            System.out.print(data[i]);
-        }
-        System.out.println();
         return data;
     }
 }

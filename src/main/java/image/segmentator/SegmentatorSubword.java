@@ -1,11 +1,11 @@
 package image.segmentator;
+
+import common.MyMath;
 import image.BWC;
 import image.BinaryImageShell;
 import image.MainbodySOSet;
 import image.RectAndBlackPoints;
 import image.classifier.FeatureExtraction;
-import thesis.MyMath;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;

@@ -12,8 +12,9 @@ public class Const {
 //        public static final String TEST_IMAGES = APP_FOLDER + "dataHuruf/";
 //        public static final String RESULT_IMAGES = APP_FOLDER + "result/";
         
-      public static final String APP_FOLDER = "D:" + File.separator + "tesis" + File.separator + "Gambar";
-	public static final String TRAIN_DATA = APP_FOLDER + File.separator + "dataset huruf arab" + File.separator;
+      public static final String APP_FOLDER = "D:" + File.separator + "tesis" + File.separator + "final";
+      public static final String TRAIN_DATA = APP_FOLDER + File.separator + "datasetHurufArab" + File.separator;  
+      public static final String MODEL_DATAMAX = APP_FOLDER +"modelMaxHurufArab/";
       public static final String MODEL_DATA = APP_FOLDER + File.separator + "modelHurufArab" + File.separator;
       public static final int NUM_SYMBOLS = 8; // 8 karakter chaincode untuk training
       public static final String TEST_IMAGES = APP_FOLDER + File.separator + "dataHuruf" + File.separator;
