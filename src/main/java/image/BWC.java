@@ -3,17 +3,15 @@ package image;
 /**
  * Mengamdung konvensi pewarnaan biner dan ambang batas hitam putih piksel.
  * 
- * @author Albadr
- * @author Gazandi
  */
 public class BWC {
 
     /** Batas hitam dan putih. Di bawah ambang berarti hitam, di atas putih. */
-    public static int BW_THRESHOLD = 127;
+    public static int BW_THRESHOLD = 150;
     /** Warna putih dalam range HEX 0-255. Bernilai 255. */
     public static int WHITE_COLOR = 255;
     /** Warna abu-abu dalam range HEX 0-255. Bernilai 127. */
-    public static int GRAY_COLOR = 127;
+    public static int GRAY_COLOR = 150;
     /** Warna hitam dalam range HEX 0-255. Bernilai 0. */
     public static int BLACK_COLOR = 0;
     
