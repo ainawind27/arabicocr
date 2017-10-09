@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+
+import image.BinaryImageShell;
+import image.MainbodySOSet;
+import image.segmentator.SegmentatorChar;
+import image.segmentator.SegmentatorSubword;
 
 public class Zhangsuen2 {
 
@@ -25,8 +31,8 @@ public class Zhangsuen2 {
 		this.imgSrc = imgSrc;
 		widthImg = imgSrc.getWidth();
 		heightImg = imgSrc.getHeight();
-		int threshold = OtsuThreshold.getThreshold(imgSrc);
-		
+		// int threshold = OtsuThreshold.getThreshold(imgSrc);
+
 		binaryImage = new int[widthImg][heightImg];
 		System.out.println("Binarized " + name + "...");
 		for (int i = 0; i < widthImg; i++) {
@@ -37,10 +43,35 @@ public class Zhangsuen2 {
 				} else {
 					binaryImage[i][j] = 0;
 				}
-//				System.out.print(binaryImage[i][j]);
+				// System.out.print(binaryImage[i][j]);
 			}
-//			System.out.println();
+			// System.out.println();
 		}
+		try {
+			String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a\\";
+			File folder = new File(fileLocation);
+			File targetFolder = new File(folder, "binerz");
+			File thinnedFile = new File(fileLocation, name);
+
+			BufferedImage image = new BufferedImage(binaryImage.length, binaryImage[0].length,
+					BufferedImage.TYPE_3BYTE_BGR);
+
+			for (int i = 0; i < binaryImage.length; i++) {
+				for (int j = 0; j < binaryImage[i].length; j++) {
+					System.out.print(binaryImage[i][j]);
+					if (binaryImage[i][j] == 0) {
+						image.setRGB(i, j, Color.white.getRGB());
+					} else {
+						image.setRGB(i, j, Color.black.getRGB());
+					}
+				}
+				System.out.println();
+			}
+			ImageIO.write(image, "png", thinnedFile);
+		} catch (IOException e) {
+
+		}
+
 		// create LokasiTetangga
 
 		Pos = new Point[8];
@@ -76,9 +107,10 @@ public class Zhangsuen2 {
 		return (tmp[0] - (tmp[0] * tmp[1] * tmp[2])) + (tmp[2] - (tmp[2] * tmp[3] * tmp[4]))
 				+ (tmp[4] - (tmp[4] * tmp[5] * tmp[6])) + (tmp[6] - (tmp[6] * tmp[7] * tmp[0]));
 	}
-	
+
 	/**
 	 * Return image[x][y] if within boundaries, else return 0.
+	 * 
 	 * @param image
 	 * @param x
 	 * @param y
@@ -96,7 +128,7 @@ public class Zhangsuen2 {
 		TandaiHapus = new ArrayList<Point>();
 		Point Titik_Sekarang;
 		boolean stop;
-		int sl=0;
+		int sl = 0;
 
 		do {
 			// T1
@@ -149,7 +181,7 @@ public class Zhangsuen2 {
 				binaryImage[(int) TandaiHapus.get(i).getX()][(int) TandaiHapus.get(i).getY()] = 0;
 			}
 			TandaiHapus.clear();
-			
+
 			// T3
 			for (int x = imgSrc.getWidth() - 2; x > 0; x--) {
 				for (int y = imgSrc.getHeight() - 2; y > 0; y--) {
@@ -159,7 +191,7 @@ public class Zhangsuen2 {
 					if (safeGet(binaryImage, Titik_Sekarang.getX(), Titik_Sekarang.getY()) == 1) {
 						// Cek Template T3
 						if (safeGet(binaryImage, Titik_Sekarang.getX() - 1, Titik_Sekarang.getY()) == 1
-								&& safeGet(binaryImage, Titik_Sekarang.getX() + 1,Titik_Sekarang.getY()) == 0) {
+								&& safeGet(binaryImage, Titik_Sekarang.getX() + 1, Titik_Sekarang.getY()) == 0) {
 
 							if (InterCon(Titik_Sekarang) == 1 && !endPoint(Titik_Sekarang)) {
 								// menandai titik yang akan dihapus
@@ -177,7 +209,7 @@ public class Zhangsuen2 {
 
 			}
 			TandaiHapus.clear();
-			
+
 			// T4
 			for (int x = 1; x < imgSrc.getWidth() - 1; x++) {
 				for (int y = imgSrc.getHeight() - 2; y > 0; y--) {
@@ -201,7 +233,7 @@ public class Zhangsuen2 {
 				binaryImage[(int) TandaiHapus.get(i).getX()][(int) TandaiHapus.get(i).getY()] = 0;
 			}
 			TandaiHapus.clear();
-			
+
 		} while (!stop);
 
 		// Post-processing, delete all branching pixels
@@ -226,12 +258,11 @@ public class Zhangsuen2 {
 			}
 		}
 
-//		 Delete all queued pixels for deletion
-		 for(int i=0; i<TandaiHapus.size(); i++){
-		 binaryImage[(int)TandaiHapus.get(i).getX()][(int)TandaiHapus.get(i).getY()]
-		= 0;
-		 }
-		 TandaiHapus.clear();
+		// Delete all queued pixels for deletion
+		for (int i = 0; i < TandaiHapus.size(); i++) {
+			binaryImage[(int) TandaiHapus.get(i).getX()][(int) TandaiHapus.get(i).getY()] = 0;
+		}
+		TandaiHapus.clear();
 
 		// Set thinning result to source image
 		for (int i = 0; i < imgSrc.getWidth(); i++) {

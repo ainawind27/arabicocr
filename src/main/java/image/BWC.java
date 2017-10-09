@@ -11,7 +11,7 @@ public class BWC {
     /** Warna putih dalam range HEX 0-255. Bernilai 255. */
     public static int WHITE_COLOR = 255;
     /** Warna abu-abu dalam range HEX 0-255. Bernilai 127. */
-    public static int GRAY_COLOR = 150;
+    public static int GRAY_COLOR = 127;
     /** Warna hitam dalam range HEX 0-255. Bernilai 0. */
     public static int BLACK_COLOR = 0;
     

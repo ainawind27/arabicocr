@@ -362,9 +362,12 @@ public class BinaryImageShell extends ImageShell {
 //        boolean reachThreshold = (red > ThresHoldBW && green > ThresHoldBW)
 //                || (red > ThresHoldBW && blue > ThresHoldBW)
 //                || (green > ThresHoldBW && blue > ThresHoldBW);
-        boolean reachThreshold = (red <= ThresHoldBW && green <= ThresHoldBW)
-                || (red <= ThresHoldBW && blue <= ThresHoldBW)
-                || (green <= ThresHoldBW && blue <= ThresHoldBW);
+        boolean reachThreshold = (red <= ThresHoldBW)
+                || (green <= ThresHoldBW )
+                || ( blue <= ThresHoldBW);
+//        boolean reachThreshold = (red <= ThresHoldBW && green <= ThresHoldBW)
+//                || (red <= ThresHoldBW && blue <= ThresHoldBW)
+//                || (green <= ThresHoldBW && blue <= ThresHoldBW);
 //        boolean reachThreshold = (red <= ThresHoldBW || green <= ThresHoldBW || blue <= ThresHoldBW);
         return alpha > ThresHoldBW && reachThreshold ? BWC.BLACK_BOOL : BWC.WHITE_BOOL;
     }

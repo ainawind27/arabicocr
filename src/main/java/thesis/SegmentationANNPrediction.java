@@ -12,17 +12,17 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "test.png");
+		File input = new File(fileLocation, "test7.png");
 		
 //		String[] expectedResult = { "alif"};
 		//test7
-//		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
-//									"ain", "mim", "habesar", "alif", "lam",
-//									"ha", "lam", "waw"};
+		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
+									"ain", "mim", "habesar", "alif", "lam",
+									"ha", "lam", "waw"};
 		//test
-		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
-									"fa", "ya", "alif", "lam", "ha",
-									"ya", "alif", "tamarbuto"};
+//		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
+//									"fa", "ya", "alif", "lam", "ha",
+//									"ya", "alif", "tamarbuto"};
 		//test2
 //		String[] expectedResult = { "ain", "mim", "lam" , "waw", "alif", "lam", "dal", "ya", 
 //									"fa", "ya", "alif", "lam", "mim",
