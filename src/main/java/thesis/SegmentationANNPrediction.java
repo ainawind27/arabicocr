@@ -12,13 +12,13 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "test7.png");
+		File input = new File(fileLocation, "test3.png");
 		
 //		String[] expectedResult = { "alif"};
 		//test7
-		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
-									"ain", "mim", "habesar", "alif", "lam",
-									"ha", "lam", "waw"};
+//		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
+//									"ain", "mim", "habesar", "alif", "lam",
+//									"ha", "lam", "waw"};
 		//test
 //		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
 //									"fa", "ya", "alif", "lam", "ha",
@@ -32,6 +32,15 @@ public class SegmentationANNPrediction {
 //									"ya", "sad", "unknown", "ha", "ta",
 //									"kaf" , "unknown", "ha", "ya" , "alif", "tamarbuto", "tho", 
 //									"ya", "ba", "tamarbuto"};
+		//test5
+//		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
+//									"ya", "sad", "unknown", "ha", "ta",
+//									"kaf" , "unknown", "ha", "ya", "alif", 
+//									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
+		//test3
+		String[] expectedResult = { "nun", "ta", "ain", "lam", "mim", "mim", "ain", "alif"};
+		
+		
 		BinaryImageShell image = new BinaryImageShell(input);
 		List<File> segmentFiles = ArabicOCR.segmentize(image, fileLocation);
 		System.out.println(segmentFiles);

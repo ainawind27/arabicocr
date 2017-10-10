@@ -53,6 +53,7 @@ public class Thinning1 {
 
 	public static void main(String[] args) throws IOException {
 		String fileLocation = "D:\\filetraining\\";
+//		String fileLocation = "D:\\test\\";
 //		String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a";
 		File folder = new File(fileLocation);
 		Thinning1 thinning = new Thinning1();

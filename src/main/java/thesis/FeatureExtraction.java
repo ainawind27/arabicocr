@@ -47,7 +47,7 @@ public class FeatureExtraction {
 			int dotCount = 0;
 			String bodyChain = null;
 			for (int i = 0; i < chains.size(); i++) {
-				if (chains.get(i).chain.length() >= 17
+				if (chains.get(i).chain.length() >= 7
 						&& (null == bodyChain || chains.get(i).chain.length() > bodyChain.length())) {
 					bodyChain = chains.get(i).chain;
 				} else {

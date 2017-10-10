@@ -47,30 +47,30 @@ public class Zhangsuen2 {
 			}
 			// System.out.println();
 		}
-		try {
-			String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a\\";
-			File folder = new File(fileLocation);
-			File targetFolder = new File(folder, "binerz");
-			File thinnedFile = new File(fileLocation, name);
-
-			BufferedImage image = new BufferedImage(binaryImage.length, binaryImage[0].length,
-					BufferedImage.TYPE_3BYTE_BGR);
-
-			for (int i = 0; i < binaryImage.length; i++) {
-				for (int j = 0; j < binaryImage[i].length; j++) {
-					System.out.print(binaryImage[i][j]);
-					if (binaryImage[i][j] == 0) {
-						image.setRGB(i, j, Color.white.getRGB());
-					} else {
-						image.setRGB(i, j, Color.black.getRGB());
-					}
-				}
-				System.out.println();
-			}
-			ImageIO.write(image, "png", thinnedFile);
-		} catch (IOException e) {
-
-		}
+//		try {
+//			String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a\\";
+//			File folder = new File(fileLocation);
+//			File targetFolder = new File(folder, "binerz");
+//			File thinnedFile = new File(fileLocation, name);
+//
+//			BufferedImage image = new BufferedImage(binaryImage.length, binaryImage[0].length,
+//					BufferedImage.TYPE_3BYTE_BGR);
+//
+//			for (int i = 0; i < binaryImage.length; i++) {
+//				for (int j = 0; j < binaryImage[i].length; j++) {
+//					System.out.print(binaryImage[i][j]);
+//					if (binaryImage[i][j] == 0) {
+//						image.setRGB(i, j, Color.white.getRGB());
+//					} else {
+//						image.setRGB(i, j, Color.black.getRGB());
+//					}
+//				}
+//				System.out.println();
+//			}
+//			ImageIO.write(image, "png", thinnedFile);
+//		} catch (IOException e) {
+//
+//		}
 
 		// create LokasiTetangga
 
@@ -89,7 +89,7 @@ public class Zhangsuen2 {
 		// Cek Jumlah Piksel sekitar Piksel
 		int TetanggaHitam = 0;
 		for (int i = 0; i < Pos.length; i++) {
-			if (binaryImage[a.x + (int) Pos[i].getX()][a.y + (int) Pos[i].getY()] == 1)
+			if (safeGet(binaryImage, a.x + (int) Pos[i].getX(), a.y + (int) Pos[i].getY()) == 1)
 				TetanggaHitam += 1;
 			if (TetanggaHitam > 1)
 				return false;
@@ -102,7 +102,7 @@ public class Zhangsuen2 {
 	public int InterCon(Point a) {
 		int[] tmp = new int[8];
 		for (int i = 0; i < Pos.length; i++)
-			tmp[i] = binaryImage[a.x + (int) Pos[i].getX()][a.y + (int) Pos[i].getY()];
+			tmp[i] = safeGet(binaryImage, a.x + (int) Pos[i].getX(),a.y + (int) Pos[i].getY());
 
 		return (tmp[0] - (tmp[0] * tmp[1] * tmp[2])) + (tmp[2] - (tmp[2] * tmp[3] * tmp[4]))
 				+ (tmp[4] - (tmp[4] * tmp[5] * tmp[6])) + (tmp[6] - (tmp[6] * tmp[7] * tmp[0]));
@@ -133,8 +133,8 @@ public class Zhangsuen2 {
 		do {
 			// T1
 			stop = true;
-			for (int y = 1; y < imgSrc.getHeight() - 1; y++) {
-				for (int x = 1; x < imgSrc.getWidth() - 1; x++) {
+			for (int y = 0; y < imgSrc.getHeight() ; y++) {
+				for (int x = 0; x < imgSrc.getWidth() ; x++) {
 
 					Titik_Sekarang = new Point(x, y);
 					// cek titik sekarang apakah hitam
@@ -158,7 +158,7 @@ public class Zhangsuen2 {
 			}
 			TandaiHapus.clear();
 			// T2
-			for (int x = imgSrc.getWidth() - 2; x > 0; x--) {
+			for (int x = imgSrc.getWidth() - 1; x >= 0; x--) {
 				for (int y = 1; y < imgSrc.getHeight(); y++) {
 
 					Titik_Sekarang = new Point(x, y);
@@ -183,8 +183,8 @@ public class Zhangsuen2 {
 			TandaiHapus.clear();
 
 			// T3
-			for (int x = imgSrc.getWidth() - 2; x > 0; x--) {
-				for (int y = imgSrc.getHeight() - 2; y > 0; y--) {
+			for (int x = imgSrc.getWidth() - 1; x >= 0; x--) {
+				for (int y = imgSrc.getHeight() - 1; y >= 0; y--) {
 
 					Titik_Sekarang = new Point(x, y);
 					// Cek titik sekarang apakah hitam
@@ -211,8 +211,8 @@ public class Zhangsuen2 {
 			TandaiHapus.clear();
 
 			// T4
-			for (int x = 1; x < imgSrc.getWidth() - 1; x++) {
-				for (int y = imgSrc.getHeight() - 2; y > 0; y--) {
+			for (int x = 0; x < imgSrc.getWidth() ; x++) {
+				for (int y = imgSrc.getHeight() - 1; y >= 0; y--) {
 					Titik_Sekarang = new Point(x, y);
 					// cek apakah titik sekang titik hitam
 					if (safeGet(binaryImage, Titik_Sekarang.getX(), Titik_Sekarang.getY()) == 1) {
@@ -237,18 +237,16 @@ public class Zhangsuen2 {
 		} while (!stop);
 
 		// Post-processing, delete all branching pixels
-		for (int i = 1; i < imgSrc.getWidth() - 1; i++) {
-			for (int j = 1; j < imgSrc.getHeight() - 1; j++) {
-				int P1 = binaryImage[i][j - 1];
-				int P2 = binaryImage[i + 1][j - 1];
-				int P3 = binaryImage[i + 1][j];
-				int P4 = binaryImage[i + 1][j + 1];
-				int P5 = binaryImage[i][j + 1];
-				int P6 = binaryImage[i - 1][j + 1];
-				int P7 = binaryImage[i - 1][j];
-				int P8 = binaryImage[i - 1][j - 1];
-
-				int sum = P1 + P2 + P3 + P4 + P5 + P6 + P7 + P8;
+		for (int i = 0; i < imgSrc.getWidth(); i++) {
+			for (int j = 0; j < imgSrc.getHeight(); j++) {
+				int P1 = safeGet(binaryImage, i, j - 1);
+				int P2 = safeGet(binaryImage, i + 1, j - 1);
+				int P3 = safeGet(binaryImage, i + 1, j);
+				int P4 = safeGet(binaryImage, i + 1, j + 1);
+				int P5 = safeGet(binaryImage, i, j + 1);
+				int P6 = safeGet(binaryImage, i - 1, j + 1);
+				int P7 = safeGet(binaryImage, i - 1, j);
+				int P8 = safeGet(binaryImage, i - 1, j - 1);
 
 				if ((P1 == 1 && P3 == 1 && P6 != 1) || (P3 == 1 && P5 == 1 && P8 != 1)
 						|| (P5 == 1 && P7 == 1 && P2 != 1) || (P7 == 1 && P1 == 1 && P4 != 1)) {
