@@ -12,35 +12,92 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "test3.png");
+		File input = new File(fileLocation, "test5.png");
 		
 //		String[] expectedResult = { "alif"};
-		//test7
+		
+		//test1, 54%
+//		String[] expectedResult = { "ha", "alif", "waw" , "lam", "ha", "ta", "ya", "ta", 
+//									"nun", "jim", "ha"};
+		//test7, 64%
 //		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
 //									"ain", "mim", "habesar", "alif", "lam",
 //									"ha", "lam", "waw"};
-		//test
+		//test , 66%
 //		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
 //									"fa", "ya", "alif", "lam", "ha",
 //									"ya", "alif", "tamarbuto"};
-		//test2
+		//test2, 47%
 //		String[] expectedResult = { "ain", "mim", "lam" , "waw", "alif", "lam", "dal", "ya", 
 //									"fa", "ya", "alif", "lam", "mim",
 //									"kaf" , "ta", "ba", "unknown"};
-		//test4
-//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain", "lam", 
-//									"ya", "sad", "unknown", "ha", "ta",
+		//test4, 68%
+//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ainlam", "ya", 
+//									 "sad", "unknown", "ha", "ta",
 //									"kaf" , "unknown", "ha", "ya" , "alif", "tamarbuto", "tho", 
 //									"ya", "ba", "tamarbuto"};
-		//test5
-//		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
-//									"ya", "sad", "unknown", "ha", "ta",
-//									"kaf" , "unknown", "ha", "ya", "alif", 
-//									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
-		//test3
-		String[] expectedResult = { "nun", "ta", "ain", "lam", "mim", "mim", "ain", "alif"};
+		//test5, 74%
+		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
+									"ya", "sad", "unknown", "ha", "ta",
+									"kaf" , "unknown", "ha", "ya", "alif", 
+									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
+		//test3, 62%
+//		String[] expectedResult = { "nun", "ta", "ain", "lam", "mim", "mim", "ain", "alif"};
 		
+		//test8, 76%
+//		String[] expectedResult = { "fa", "alif", "kaf" , "habesar", "tamarbuto", "dal", "waw", "ra", 
+//									"ya", "alif", "nun", "alif", "lamalif",
+//									"dzal" , "waw", "alif", "qaf" , "jim", "ya", "dal", 
+//									"tamarbuto"};
+//		//test9, 55%
+//		String[] expectedResult = { "ya", "za", "dal" , "habesarra", "alif", 
+//									"lamalif", "ra", 
+//									"za", "fa", "ya", "ha", "qaf", "waw", "lam",
+//									"alif", "lamalif", "ra", "za"};
+//		//test10, 47%
+//		String[] expectedResult = { "ta", "nun", "alif" , "waw", "lam", 
+//									"alif", "lam", 
+//									"tho", "ain", "alif", "mim", "ain", "lam", "ya",
+//									"lam", "waw", "ha", "tamarbuto", "alif", "lam", 
+//									"ba", "nun", "ya"};
+//		//test11, 71%
+//		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
+//									"mim", "ya", 
+//									"nun", "ya", "ain", "lam", "mim", "waw",
+//									"nun"};
+//		//test12, 82%
+//		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
+//									"ta", "ba", 
+//									"dal", "waw", "jim", "mim", "ya", "lam",
+//									"tamarbuto", "jim", "dal", "alif"};
 		
+//		//test13, hasil 71%
+//		String[] expectedResult = { "jim", "dal", "tamarbuto" , "alif", "lamalif", 
+//									"ra", "za", 
+//									"alif", "lam", "mim", "tho", "ba", "waw",
+//									"jim"};
+		//test0, hasil 79%
+//		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", "ra", 
+//									"alif", "mim", 
+//									"alif", "lam", "mim", "ta", "ba", "alif",
+//									"dal", "lam", "ba", "ya", "nun", "alif",
+//									"lamalif", "dal", "ya", "alif", "nun"};
+		//test16, hasil 76%
+//		String[] expectedResult = { "ta", "ta", "kha" , "lam", "ya", 
+//									"alif", "ba", 
+//									"dal", "alif", "fa", "ya", "alif", "lam",
+//									"ha", "ya", "alif", "tamarbuto"};
+//		
+//		//test17, hasil 72%
+//		String[] expectedResult = { "ya", "ta", "kaf" , "lam", "mim", 
+//									"ba", "ba", 
+//									"tho", "hamzah", "mim", "fa", "habesar", "waw",
+//									"mim", "tamarbuto", "ha", "ta", "ya"};
+		//test18, hasil 76%
+//		String[] expectedResult = { "alif", "nun", "ta" , "dzo", "ra", 
+//									"alif", "ya", 
+//									"mim", "ha", "alif", "kaf", "mim", "tamarbuto",
+//									};
 		BinaryImageShell image = new BinaryImageShell(input);
 		List<File> segmentFiles = ArabicOCR.segmentize(image, fileLocation);
 		System.out.println(segmentFiles);

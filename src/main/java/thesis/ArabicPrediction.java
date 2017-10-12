@@ -48,7 +48,7 @@ import java.util.List;
 public class ArabicPrediction {
 	static final List<String> LABELS = ImmutableList.of("ain", "alif", "ba", "dal", "dhad", "dzal", "dzo", "fa",
 			"ghoin", "hamzah", "ha", "habesar", "jim", "kaf", "kha", "lam", "mim", "nun", "qaf", "ra", "sad", "sheen",
-			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za");
+			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za", "lamalif");
 
 	public String[] arabicPrediction(File featuresFile, boolean checkEval) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -58,7 +58,7 @@ public class ArabicPrediction {
 		int testingSampleCount = features.segments.size();
 
 		INDArray predictionInput = Nd4j.zeros(testingSampleCount, 12);
-		INDArray labels = Nd4j.zeros(testingSampleCount, 30);
+		INDArray labels = Nd4j.zeros(testingSampleCount, 31);
 		for (int i = 0; i < features.segments.size(); i++) {
 			Segment segment = features.segments.get(i);
 
@@ -101,15 +101,18 @@ public class ArabicPrediction {
 
 		System.out.println();
 		System.out.println();
-		INDArray maxIdxPerRow = predictionOutput.argMax(1);// ambil indeks
+		INDArray maxIdxPerRow = predictionOutput.argMax(1);
+		 INDArray amaxIdxPerRow = predictionOutput.amax(1);// ambil indeks
 															// maksimum ditiap
 															// baris
 		String[] result = new String[testingSampleCount];
+		float [] result1 = new float[testingSampleCount];
 		for (int i = 0; i < maxIdxPerRow.length(); i++) {
 			int curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di
-														// nilai indeks ke i
+			float max =  (float) amaxIdxPerRow.getFloat(i);											// nilai indeks ke i
 			result[i] = LABELS.get(curIdx);
-			System.out.println(i + " - " + features.segments.get(i).name + " -> " + LABELS.get(curIdx));
+		
+			System.out.println(i + " - " + features.segments.get(i).name + " -> " + LABELS.get(curIdx) + " -> " + max );
 
 			// System.out.println(curIdx);
 		}
@@ -118,7 +121,7 @@ public class ArabicPrediction {
 			// let Evaluation prints stats how often the right output had the
 			// highest value
 			System.out.println("Testing samples: " + testingSampleCount);
-			Evaluation eval = new Evaluation(30);
+			Evaluation eval = new Evaluation(31);
 			eval.eval(ds.getLabels(), predictionOutput);
 			System.out.println(eval.stats());
 		}

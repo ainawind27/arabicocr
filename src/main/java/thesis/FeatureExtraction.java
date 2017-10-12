@@ -97,7 +97,7 @@ public class FeatureExtraction {
 
 	static final List<String> LABELS = ImmutableList.of("ain", "alif", "ba", "dal", "dhad", "dzal", "dzo", "fa",
 			"ghoin", "hamzah", "ha", "habesar", "jim", "kaf", "kha", "lam", "mim", "nun", "qaf", "ra", "sad", "sheen",
-			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za");
+			"sin", "tamarbuto", "ta", "tho", "tsa", "waw", "ya", "za", "lamalif");
 
 	static class Features {
 		List<Segment> segments = new ArrayList<>();
@@ -250,6 +250,7 @@ public class FeatureExtraction {
 
 	static public void main(String args[]) throws Exception {
 		File folder = new File("D:\\filetraining\\zhangsuen");
+//		File folder = new File("D:\\testfitur\\zhangsuen");
 		FeatureExtraction featureextraction = new FeatureExtraction();
 		featureextraction.extractFeatures(folder);
 	}

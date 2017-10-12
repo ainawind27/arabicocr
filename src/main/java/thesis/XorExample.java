@@ -1124,10 +1124,11 @@ public class XorExample {
 
         System.out.println();
         System.out.println();
-        INDArray maxIdxPerRow = predictionOutput.argMax(0);// ambil indeks maksimum ditiap baris
+        INDArray maxIdxPerRow = predictionOutput.argMax(1);// ambil indeks maksimum ditiap baris
+        INDArray amaxIdxPerRow = predictionOutput.amax(1);
         for (int i =0; i<maxIdxPerRow.length(); i++) {
-            float curIdx = (int) maxIdxPerRow.getInt(i); // ambil nilai integer di nilai indeks ke i
-
+            int curIdx = (int) maxIdxPerRow.getFloat(i); // ambil nilai integer di nilai indeks ke i
+            float maxIdx =  (float) amaxIdxPerRow.getFloat(i);
             if (curIdx==0){
                 System.out.println("ain");
             }else if (curIdx==1){
@@ -1190,7 +1191,8 @@ public class XorExample {
                 System.out.println("za");
             }
 
-          //  System.out.println(curIdx);
+            System.out.println(curIdx );
+            System.out.println(maxIdx);
         }
 
 
