@@ -12,64 +12,40 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "test5.png");
-		
-//		String[] expectedResult = { "alif"};
-		
-		//test1, 54%
-//		String[] expectedResult = { "ha", "alif", "waw" , "lam", "ha", "ta", "ya", "ta", 
-//									"nun", "jim", "ha"};
-		//test7, 64%
-//		String[] expectedResult = { "alif", "lam", "kha" , "ba", "za", "tho", 
-//									"ain", "mim", "habesar", "alif", "lam",
-//									"ha", "lam", "waw"};
-		//test , 66%
-//		String[] expectedResult = { "alif", "lam", "ain" , "alif", "tho", "fa", "tamarbuto", 
-//									"fa", "ya", "alif", "lam", "ha",
-//									"ya", "alif", "tamarbuto"};
-		//test2, 47%
-//		String[] expectedResult = { "ain", "mim", "lam" , "waw", "alif", "lam", "dal", "ya", 
-//									"fa", "ya", "alif", "lam", "mim",
-//									"kaf" , "ta", "ba", "unknown"};
+		File input = new File(fileLocation, "test12.png");
+	
 		//test4, 68%
 //		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ainlam", "ya", 
 //									 "sad", "unknown", "ha", "ta",
 //									"kaf" , "unknown", "ha", "ya" , "alif", "tamarbuto", "tho", 
 //									"ya", "ba", "tamarbuto"};
 		//test5, 74%
-		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
-									"ya", "sad", "unknown", "ha", "ta",
-									"kaf" , "unknown", "ha", "ya", "alif", 
-									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
-		//test3, 62%
-//		String[] expectedResult = { "nun", "ta", "ain", "lam", "mim", "mim", "ain", "alif"};
-		
+//		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
+//									"ya", "sad", "unknown", "ha", "ta",
+//									"kaf" , "unknown", "ha", "ya", "alif", 
+//									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
+
 		//test8, 76%
 //		String[] expectedResult = { "fa", "alif", "kaf" , "habesar", "tamarbuto", "dal", "waw", "ra", 
 //									"ya", "alif", "nun", "alif", "lamalif",
 //									"dzal" , "waw", "alif", "qaf" , "jim", "ya", "dal", 
 //									"tamarbuto"};
-//		//test9, 55%
+//		//test9, 
 //		String[] expectedResult = { "ya", "za", "dal" , "habesarra", "alif", 
 //									"lamalif", "ra", 
 //									"za", "fa", "ya", "ha", "qaf", "waw", "lam",
 //									"alif", "lamalif", "ra", "za"};
-//		//test10, 47%
-//		String[] expectedResult = { "ta", "nun", "alif" , "waw", "lam", 
-//									"alif", "lam", 
-//									"tho", "ain", "alif", "mim", "ain", "lam", "ya",
-//									"lam", "waw", "ha", "tamarbuto", "alif", "lam", 
-//									"ba", "nun", "ya"};
+
 //		//test11, 71%
 //		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
 //									"mim", "ya", 
 //									"nun", "ya", "ain", "lam", "mim", "waw",
 //									"nun"};
 //		//test12, 82%
-//		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
-//									"ta", "ba", 
-//									"dal", "waw", "jim", "mim", "ya", "lam",
-//									"tamarbuto", "jim", "dal", "alif"};
+		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
+									"ta", "ba", 
+									"dal", "waw", "jim", "mim", "ya", "lam",
+									"tamarbuto", "jim", "dal", "alif"};
 		
 //		//test13, hasil 71%
 //		String[] expectedResult = { "jim", "dal", "tamarbuto" , "alif", "lamalif", 
