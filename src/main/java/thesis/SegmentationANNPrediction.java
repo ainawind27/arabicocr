@@ -12,7 +12,7 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "test12.png");
+		File input = new File(fileLocation, "test11.png");
 	
 		//test4, 68%
 //		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ainlam", "ya", 
@@ -37,15 +37,15 @@ public class SegmentationANNPrediction {
 //									"alif", "lamalif", "ra", "za"};
 
 //		//test11, 71%
-//		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
-//									"mim", "ya", 
-//									"nun", "ya", "ain", "lam", "mim", "waw",
-//									"nun"};
+		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
+									"mim", "ya", 
+									"nun", "ya", "ain", "lam", "mim", "waw",
+									"nun"};
 //		//test12, 82%
-		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
-									"ta", "ba", 
-									"dal", "waw", "jim", "mim", "ya", "lam",
-									"tamarbuto", "jim", "dal", "alif"};
+//		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
+//									"ta", "ba", 
+//									"dal", "waw", "jim", "mim", "ya", "lam",
+//									"tamarbuto", "jim", "dal", "alif"};
 		
 //		//test13, hasil 71%
 //		String[] expectedResult = { "jim", "dal", "tamarbuto" , "alif", "lamalif", 
