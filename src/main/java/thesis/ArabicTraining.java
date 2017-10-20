@@ -205,6 +205,7 @@ public class ArabicTraining {
             input.putScalar(new int[]{i, 9}, 2.0*((segment.normalizedBodyChain[7]-1.0)/7.0)-1.0);
             input.putScalar(new int[]{i, 10}, 2.0*((segment.normalizedBodyChain[8]-1.0)/7.0)-1.0);
             input.putScalar(new int[]{i, 11}, 2.0*((segment.normalizedBodyChain[9]-1.0)/7.0)-1.0);
+            
             // then the first output fires for false, and the second is 0 (see class
             // comment)
             

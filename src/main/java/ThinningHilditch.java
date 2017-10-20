@@ -14,7 +14,7 @@ import java.util.List;
 public class ThinningHilditch {
 
 	public static void main(String[] args) throws IOException {
-		String fileLocation = "D:\\filetraining\\";
+		String fileLocation = "D:\\Thin\\";
 		List<File> queuedFiles = new ArrayList<File>();
 
 		File folder = new File(fileLocation);

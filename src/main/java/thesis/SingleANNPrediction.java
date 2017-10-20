@@ -8,7 +8,15 @@ public class SingleANNPrediction {
 
 	public static void main (String[]args) throws IOException{
 //		File folder = new File ("D:\\filetesting\\");	
-		File folder = new File ("D:\\font tesis aina\\font tahoma\\");
+		
+		File folder = new File ("D:\\font tesis aina\\font arial unicode ms\\");
+//		File folder = new File ("D:\\font tesis aina\\font tahoma\\");
+//		File folder = new File ("D:\\font tesis aina\\font times new roman\\");
+		
+// 		Font selain data latih
+//		File folder = new File ("D:\\font tesis aina\\font microsoft sans serif\\huruf_tunggal\\");
+//		File folder = new File ("D:\\font tesis aina\\font segoe ui\\huruf tunggal\\");
+//		File folder = new File ("D:\\font tesis aina\\font nazanin\\huruf tunggal");
 		File folder1 = new File(folder, "zhangsuen");
 		File featuresFile = new File(folder1, "zhangsuen.Features.json");
 		

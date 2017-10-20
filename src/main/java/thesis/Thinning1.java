@@ -37,7 +37,7 @@ public class Thinning1 {
 			Zhangsuen2 thinning = new Zhangsuen2(image, queuedFiles.get(i).getName());
 			BufferedImage thinImage = thinning.doZhangSuen();
 
-			File thinnedFile = new File(targetFolder, queuedFiles.get(i).getName().replace(".", "_zhangsuen."));
+			File thinnedFile = new File(targetFolder, queuedFiles.get(i).getName().replace(".", "_steintiford."));
 			ImageIO.write(thinImage, "png", thinnedFile);
 			thinnedFiles.add(thinnedFile);
 

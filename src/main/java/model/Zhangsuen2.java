@@ -131,7 +131,7 @@ public class Zhangsuen2 {
 		int sl = 0;
 
 		do {
-			// T1
+			// T1 dari atas kiri kebawah sebelah kanan 
 			stop = true;
 			for (int y = 0; y < imgSrc.getHeight() ; y++) {
 				for (int x = 0; x < imgSrc.getWidth() ; x++) {
@@ -157,7 +157,7 @@ public class Zhangsuen2 {
 
 			}
 			TandaiHapus.clear();
-			// T2
+			// T2 kanan atas kebawah sebelah kiri
 			for (int x = imgSrc.getWidth() - 1; x >= 0; x--) {
 				for (int y = 1; y < imgSrc.getHeight(); y++) {
 
@@ -182,7 +182,7 @@ public class Zhangsuen2 {
 			}
 			TandaiHapus.clear();
 
-			// T3
+			// T3 kanan bawah keatas
 			for (int x = imgSrc.getWidth() - 1; x >= 0; x--) {
 				for (int y = imgSrc.getHeight() - 1; y >= 0; y--) {
 
@@ -210,7 +210,7 @@ public class Zhangsuen2 {
 			}
 			TandaiHapus.clear();
 
-			// T4
+			// T4 kiri bawah keatas
 			for (int x = 0; x < imgSrc.getWidth() ; x++) {
 				for (int y = imgSrc.getHeight() - 1; y >= 0; y--) {
 					Titik_Sekarang = new Point(x, y);

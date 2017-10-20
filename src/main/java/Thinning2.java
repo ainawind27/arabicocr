@@ -19,7 +19,7 @@ public class Thinning2 {
 
 		// load the model image
 		BinaryImageShell image1 = new BinaryImageShell(fileName);
-		Hilditch thinning = new Hilditch(image1);
+		Thinning_Zhang_Suen thinning = new Thinning_Zhang_Suen(image1);
 		// Zhangsuen2 thinning= new Zhangsuen2(image);
 		BinaryImageShell thinImage = thinning.getSkeleton();
 
