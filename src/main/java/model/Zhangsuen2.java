@@ -107,7 +107,23 @@ public class Zhangsuen2 {
 		return (tmp[0] - (tmp[0] * tmp[1] * tmp[2])) + (tmp[2] - (tmp[2] * tmp[3] * tmp[4]))
 				+ (tmp[4] - (tmp[4] * tmp[5] * tmp[6])) + (tmp[6] - (tmp[6] * tmp[7] * tmp[0]));
 	}
-
+	
+//	public int boolToInt (boolean b){
+//		return b ? 1:0;
+//	}
+//	public int InterCon (Point a){
+//		boolean [] matrix = new boolean [8];
+//		for (int i = 0; i < Pos.length; i++)
+//			if(safeGet(binaryImage, a.x + (int) Pos[i].getX(),a.y + (int) Pos[i].getY())==1)
+//				matrix[i]=true;
+//			else 
+//				matrix[i]=false;
+//		return boolToInt(!matrix[0]&&(matrix[1] || matrix[2]))+
+//			 boolToInt(!matrix[2]&&(matrix[3] || matrix[4]))+
+//			 boolToInt(!matrix[4]&&(matrix[5] || matrix[6]))+
+//			 boolToInt(!matrix[6]&&(matrix[7] || matrix[0]));
+//	}
+	
 	/**
 	 * Return image[x][y] if within boundaries, else return 0.
 	 * 

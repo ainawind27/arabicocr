@@ -88,6 +88,7 @@ public class XorExample {
         // (27) = ya
         // (28) = zay
         // (29) = alif_lam
+        //target
         labels.putScalar(new int[]{0, 0}, 1);
         labels.putScalar(new int[]{0, 1}, 0);
         labels.putScalar(new int[]{0, 2}, 0);
