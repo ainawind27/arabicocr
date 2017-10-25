@@ -35,6 +35,7 @@ public class SingleANNPrediction {
 									"lamalif", "lam", "mim", "nun", "qaf",
 									"ra", "sad", "sheen", "sin", "tamarbuto",
 									"ta", "tho", "tsa", "waw", "ya", "za"};
+		//test
 		
 		ArabicPrediction arabicprediction1 = new ArabicPrediction();
 		String[] prediction = arabicprediction1
