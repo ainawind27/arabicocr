@@ -47,7 +47,7 @@ public class Main {
 	}
 
 	public static float HMMtest() {
-		File dataset = new File(HMMFInal.Const.TEST_IMAGES + "100%satu/");
+		File dataset = new File(HMMFInal.Const.TEST_IMAGES + "100%satu");
 		System.out.println("Testing folder " + dataset);
 		int total = 0;
 		float correctness = 0.0f;
@@ -179,6 +179,7 @@ public class Main {
 					copyFolderLocalMax();
 			}
 			iterasi++;
+			
 		}
 		System.out.println("maxIteration: " + maxIteration);
 		System.out.println("maxIteration: " + max);
