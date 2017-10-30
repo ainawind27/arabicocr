@@ -315,6 +315,7 @@ public final class PosTagger {
   
     }
 
+
     test = "6 4 4 2 5 4 8 2 8 7";
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
@@ -325,6 +326,17 @@ public final class PosTagger {
     }
     
     
+
+    test = "6 6 6 6 5 4 1 1 8 8"; // dzal
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+
+
   }
 
 }
