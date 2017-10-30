@@ -276,10 +276,11 @@ public final class PosTagger {
     // generate the model from URL
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
 //    testModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/test.txt");
-    trainModel("file:///D:/hmm baru aina/train.txt");
-    testModel("file:///D:/hmm baru aina/test.txt");
+    trainModel("file:///D:/hmm baru aina/trainarabic2.txt");
+    testModel("file:///D:/hmm baru aina/testarabic2.txt");
     // tag an exemplary sentence
-    String test = "McDonalds is a huge company with many employees .";
+    String test = "6 6 6 5 5 4 1 1 8 8   6 6 8 2 3 7 6 4 2 2   6 6 4 4 4 3 2 6 5 4";
+//  String test = "McDonalds is a huge company with many employees .";
     String[] testWords = SPACE.split(test);
     List<String> posTags = tagSentence(test);
     for (int i = 0; i < posTags.size(); ++i) {
