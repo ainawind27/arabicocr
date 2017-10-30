@@ -199,15 +199,18 @@ public final class PosTagger {
 	        observedSequences,
 	        // pseudo-count
 	        0.05);
-    // we have to adjust the model a bit,
-    // since we assume a higher probability that a given unknown word is NNP
-    // than anything else
-    Matrix emissions = taggingModel.getEmissionMatrix();
-    for (int i = 0; i < taggingModel.getNrOfHiddenStates(); ++i) {
-      emissions.setQuick(i, 0, 0.1 / taggingModel.getNrOfHiddenStates());
-    }
-    int nnptag = tagIDs.get("NNP");
-    emissions.setQuick(nnptag, 0, 1 / (double) taggingModel.getNrOfHiddenStates());
+
+    // for Arabic --> no adjustment of emissions
+//    // we have to adjust the model a bit,
+//    // since we assume a higher probability that a given unknown word is NNP
+//    // than anything else
+//    Matrix emissions = taggingModel.getEmissionMatrix();
+//    for (int i = 0; i < taggingModel.getNrOfHiddenStates(); ++i) {
+//      emissions.setQuick(i, 0, 0.1 / taggingModel.getNrOfHiddenStates());
+//    }
+//    int nnptag = tagIDs.get("NNP");
+//    emissions.setQuick(nnptag, 0, 1 / (double) taggingModel.getNrOfHiddenStates());
+
     // re-normalize the emission probabilities
     HmmUtils.normalizeModel(taggingModel);
     // now register the names
