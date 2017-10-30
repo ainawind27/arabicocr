@@ -30,9 +30,9 @@ import java.util.regex.Pattern;
  * details regarding the data files can be found at
  * http://flexcrfs.sourceforge.net/#Case_Study
  */
-public final class PosTagger {
+public final class PosTaggerTraining {
 
-  private static final Logger log = LoggerFactory.getLogger(PosTagger.class);
+  private static final Logger log = LoggerFactory.getLogger(PosTaggerTraining.class);
 
   private static final Pattern SPACE = Pattern.compile(" ");
   private static final Pattern SPACES = Pattern.compile("[ ]+");
@@ -40,7 +40,7 @@ public final class PosTagger {
   /**
    * No public constructors for utility classes.
    */
-  private PosTagger() {
+  private PosTaggerTraining() {
     // nothing to do here really.
   }
 
@@ -280,6 +280,7 @@ public final class PosTagger {
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
 //    testModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/test.txt");
     trainModel("file:///D:/hmm baru aina/trainarabic2.txt");
+    
     testModel("file:///D:/hmm baru aina/testarabic2.txt");
 
     // tag an exemplary sentence
@@ -312,19 +313,8 @@ public final class PosTagger {
     log.info("Testing {} ...", test);
     for (int i = 0; i < posTags.size(); ++i) {
       log.info("{} -> {}", testWords[i], posTags.get(i));
-  
     }
 
-    test = "6 4 4 2 5 4 8 2 8 7";
-//  String test = "McDonalds is a huge company with many employees .";
-    testWords = SPACE.split(test);
-    posTags = tagSentence(test);
-    log.info("Testing {} ...", test);
-    for (int i = 0; i < posTags.size(); ++i) {
-      log.info("{} -> {}", testWords[i], posTags.get(i));
-    }
-    
-    
   }
 
 }
