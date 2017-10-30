@@ -13,20 +13,13 @@ public class Thinning_H {
         BufferedImage image = ImageIO.read(input);
 		
         // load the model image
-		ZhangSuen thinning = new ZhangSuen();
-        BufferedImage thinImage = thinning.doZhangSuen();
-        
-        ImageIO.write(thinImage, "png", new File(fileLocation + "ainnn.PNG"));
-        
-        System.out.println("X");
-	}
-
-}
-
-public class Thinning_H {
-
-	public Thinning_H() {
-		// TODO Auto-generated constructor stub
+		// TODO: belum selesai
+//		ZhangSuen thinning = new ZhangSuen();
+//        BufferedImage thinImage = thinning.doZhangSuen();
+//
+//        ImageIO.write(thinImage, "png", new File(fileLocation + "ainnn.PNG"));
+//
+//        System.out.println("X");
 	}
 
 }

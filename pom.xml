@@ -58,8 +58,12 @@
 			<version>0.13.0</version>
 			<exclusions>
 				<exclusion>
-					<artifactId>slf4j-log4j12</artifactId>
 					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-client</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>

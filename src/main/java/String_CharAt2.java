@@ -6,12 +6,14 @@ public class String_CharAt2 {
 	
 	static void Cekkata(){
 		Scanner input = new Scanner(System.in);
-		String a = input.
-		int huruf = kata.length();
-		for (int i = 0 ; i<huruf;i++){
-			System.out.println("Huruf ke [ " +i+ "] adalah " +kata.charAt(i));
-		}
+		// TODO: belum selesai
+//		String a = input.
+//		int huruf = kata.length();
+//		for (int i = 0 ; i<huruf;i++){
+//			System.out.println("Huruf ke [ " +i+ "] adalah " +kata.charAt(i));
+//		}
 	}
+
 	public static void main(String [] args) {
 		Scanner a = new Scanner (System.in);
 		System.out.println("Masukkan kata : ");
