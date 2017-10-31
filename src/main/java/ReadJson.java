@@ -26,6 +26,9 @@ public class ReadJson {
             	String label = (String) segment.get("label");
                 System.out.println(label);
                 
+                Long labelId = (long) segment.get("labelId");
+                System.out.println(labelId);
+                
                 Long dotCount = (Long) segment.get("dotCount");
                 System.out.println(dotCount);
                 
@@ -54,25 +57,55 @@ public class ReadJson {
 //                for (int i=0; i<features.length;i++) {
 //                	features[i] = dotCount
 //                }
-                long [] features = new long [12];
+                long [][] features = new long [12][2];
                 for (int i = 0 ; i<12 ;i++) {
-                	features[0]=dotCount;
-                	features[1]=dotPos; 
-                	features[2]=normalizedBodyChain.get(0);
-                	features[3]=normalizedBodyChain.get(1);
-                	features[4]=normalizedBodyChain.get(2);
-                	features[5]=normalizedBodyChain.get(3);
-                	features[6]=normalizedBodyChain.get(4);
-                	features[7]=normalizedBodyChain.get(5);
-                	features[8]=normalizedBodyChain.get(6);
-                	features[9]=normalizedBodyChain.get(7);
-                	features[10]=normalizedBodyChain.get(8);
-                	features[11]=normalizedBodyChain.get(9);
+                	features[0][0]=dotCount;
+                	features[1][0]=dotPos; 
+                	features[2][0]=normalizedBodyChain.get(0);
+                	features[3][0]=normalizedBodyChain.get(1);
+                	features[4][0]=normalizedBodyChain.get(2);
+                	features[5][0]=normalizedBodyChain.get(3);
+                	features[6][0]=normalizedBodyChain.get(4);
+                	features[7][0]=normalizedBodyChain.get(5);
+                	features[8][0]=normalizedBodyChain.get(6);
+                	features[9][0]=normalizedBodyChain.get(7);
+                	features[10][0]=normalizedBodyChain.get(8);
+                	features[11][0]=normalizedBodyChain.get(9);
+                	
+//                	features[0][1]=Long.parseLong(label);
+//                	features[1][1]=Long.parseLong(label);
+//                	features[2][1]=Long.parseLong(label);
+//                	features[3][1]=Long.parseLong(label);
+//                	features[4][1]=Long.parseLong(label);
+//                	features[5][1]=Long.parseLong(label);
+//                	features[6][1]=Long.parseLong(label);
+//                	features[7][1]=Long.parseLong(label);
+//                	features[8][1]=Long.parseLong(label);
+//                	features[9][1]=Long.parseLong(label);
+//                	features[10][1]=Long.parseLong(label);
+//                	features[11][1]=Long.parseLong(label);
+                	
+                	features[0][1]=labelId;
+                	features[1][1]=labelId;
+                	features[2][1]=labelId;
+                	features[3][1]=labelId;
+                	features[4][1]=labelId;
+                	features[5][1]=labelId;
+                	features[6][1]=labelId;
+                	features[7][1]=labelId;
+                	features[8][1]=labelId;
+                	features[9][1]=labelId;
+                	features[10][1]=labelId;
+                	features[11][1]=labelId;
+                	
 
                 }
                 
                 for (int i = 0 ; i<12 ;i++) {
-                	 System.out.println(features[i]);
+                	for (int j = 0; j<2;j++) {
+                		System.out.println(features[i][j] + " ");
+                	}
+                	 
                 }
                 System.out.println();
                

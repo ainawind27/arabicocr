@@ -327,7 +327,7 @@ public final class PosTagger {
     
     
 
-    test = "6 6 7 4 4 3 2 6 5 4"; // ba
+    test = "6 6 6 6 5 4 1 1 8 8"; // dzal
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
