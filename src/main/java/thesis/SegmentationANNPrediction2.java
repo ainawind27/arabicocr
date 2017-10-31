@@ -12,7 +12,7 @@ public class SegmentationANNPrediction2 {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "zidouri100.png");
+		File input = new File(fileLocation, "timesnewroman_lamalif_terpisah.png");
 	
 		//test4, 68%
 //		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ainlam", "ya", 

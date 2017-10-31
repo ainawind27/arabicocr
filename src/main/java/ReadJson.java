@@ -15,6 +15,7 @@ public class ReadJson {
 	  JSONParser parser = new JSONParser();
 
         try {
+
             Object obj = parser.parse(new FileReader("D:\\filetraining\\zhangsuen\\zhangsuen.Features.json"));
             JSONObject jsonObject = (JSONObject) obj;
 
@@ -30,10 +31,10 @@ public class ReadJson {
                 System.out.println(labelId);
                 
                 Long dotCount = (Long) segment.get("dotCount");
-                System.out.println(dotCount);
+//                System.out.println(dotCount);
                 
                 Long dotPos= (Long) segment.get("dotPos");
-                System.out.println(dotPos);
+//                System.out.println(dotPos);
                 
                 JSONArray temp = (JSONArray) segment.get("normalizedBodyChain");
                 Iterator<Long> bodyChain = temp.iterator();
@@ -47,6 +48,7 @@ public class ReadJson {
                 }
                 System.out.println();
                 System.out.println();
+
 //                
 //                System.out.println(dotCount);
 //                System.out.println(dotPos);
@@ -109,6 +111,7 @@ public class ReadJson {
                 }
                 System.out.println();
                
+
             }
 
         } catch (FileNotFoundException e) {

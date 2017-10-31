@@ -279,15 +279,15 @@ public final class PosTagger {
     // generate the model from URL
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
 //    testModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/test.txt");
-    trainModel("file:///D:/hmm baru aina/trainarabic2.txt");
-    testModel("file:///D:/hmm baru aina/testarabic2.txt");
+    trainModel("file:///D:/hmm baru aina/arabictrain2.txt");
+    testModel("file:///D:/hmm baru aina/arabictest2.txt");
 
     // tag an exemplary sentence
     String test;
     String[] testWords;
     List<String> posTags;
 
-    test = "8 1 8 5 5 4 8 1 4 8";
+    test = "8 1 8 5 5 4 8 1 4 7"; //ghoin
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -296,7 +296,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
 
-    test = "6 6 8 2 3 7 6 4 2 2";
+    test = "6 6 8 2 3 7 6 4 2 2"; //habesar
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -305,7 +305,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
 
-    test = "6 6 4 4 4 3 2 6 5 4";
+    test = "6 6 4 4 4 3 2 6 5 4"; //ba
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -316,7 +316,7 @@ public final class PosTagger {
     }
 
 
-    test = "6 4 4 2 5 4 8 2 8 7";
+    test = "6 4 4 2 5 4 8 2 8 7"; //fa
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -326,15 +326,6 @@ public final class PosTagger {
     }
     
     
-
-    test = "6 6 6 6 5 4 1 1 8 8"; // dzal
-//  String test = "McDonalds is a huge company with many employees .";
-    testWords = SPACE.split(test);
-    posTags = tagSentence(test);
-    log.info("Testing {} ...", test);
-    for (int i = 0; i < posTags.size(); ++i) {
-      log.info("{} -> {}", testWords[i], posTags.get(i));
-    }
 
 
   }
