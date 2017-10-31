@@ -31,10 +31,10 @@ public class ReadJson {
                 System.out.println(labelId);
                 
                 Long dotCount = (Long) segment.get("dotCount");
-//                System.out.println(dotCount);
+                System.out.println(dotCount);
                 
                 Long dotPos= (Long) segment.get("dotPos");
-//                System.out.println(dotPos);
+                System.out.println(dotPos);
                 
                 JSONArray temp = (JSONArray) segment.get("normalizedBodyChain");
                 Iterator<Long> bodyChain = temp.iterator();
@@ -59,7 +59,7 @@ public class ReadJson {
 //                for (int i=0; i<features.length;i++) {
 //                	features[i] = dotCount
 //                }
-                long [][] features = new long [12][2];
+                long [][] features = new long [12][3];
                 for (int i = 0 ; i<12 ;i++) {
                 	features[0][0]=dotCount;
                 	features[1][0]=dotPos; 
@@ -100,12 +100,26 @@ public class ReadJson {
                 	features[10][1]=labelId;
                 	features[11][1]=labelId;
                 	
+                	features[0][2]=123;
+                	features[1][2]=123;
+                	features[2][2]=123;
+                	features[3][2]=123;
+                	features[4][2]=123;
+                	features[5][2]=123;
+                	features[6][2]=123;
+                	features[7][2]=123;
+                	features[8][2]=123;
+                	features[9][2]=123;
+                	features[10][2]=123;
+                	features[11][2]=123;
+                	
 
                 }
                 
-                for (int i = 0 ; i<12 ;i++) {
-                	for (int j = 0; j<2;j++) {
-                		System.out.println(features[i][j] + " ");
+                for (int k = 0 ; k<features.length ;k++) {
+                	System.out.println(features[k][0] + " " + features[k][1] + " " + features[k][2]);
+                	for (int l = 0; l<features[k].length;l++) {
+               		
                 	}
                 	 
                 }
