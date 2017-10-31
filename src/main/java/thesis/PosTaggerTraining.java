@@ -7,13 +7,22 @@ import org.apache.mahout.classifier.sequencelearning.hmm.HmmModel;
 import org.apache.mahout.classifier.sequencelearning.hmm.HmmTrainer;
 import org.apache.mahout.classifier.sequencelearning.hmm.HmmUtils;
 import org.apache.mahout.math.Matrix;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -275,6 +284,58 @@ public final class PosTaggerTraining {
     return HmmUtils.decodeStateSequence(taggingModel, hiddenSequence, false, null);
   }
 
+  	static int ReadJson (File Json) {
+  		
+  		int features = 0;
+  		
+  		JSONParser parser = new JSONParser();
+
+        try {
+            Object obj = parser.parse(new FileReader("D:\\filetraining\\zhangsuen\\zhangsuen.Features.json"));
+            JSONObject jsonObject = (JSONObject) obj;
+
+            JSONArray segments = (JSONArray) jsonObject.get("segments");
+            Iterator<JSONObject> iterator = segments.iterator();
+            while (iterator.hasNext()) {
+            	JSONObject segment = iterator.next();
+                
+            	String label = (String) segment.get("label");
+                System.out.println(label);
+                
+                Long dotCount = (Long) segment.get("dotCount");
+//                System.out.println(dotCount);
+                
+                Long dotPos= (Long) segment.get("dotPos");
+//                System.out.println(dotPos);
+                
+                JSONArray temp = (JSONArray) segment.get("normalizedBodyChain");
+                Iterator<Long> bodyChain = temp.iterator();
+                ArrayList<Long> normalizedBodyChain = new ArrayList<>();
+                while (bodyChain.hasNext()) {
+                	normalizedBodyChain.add((bodyChain.next()));
+                }
+                
+                for(int i=0;i<normalizedBodyChain.size();++i) {
+                	System.out.print(normalizedBodyChain.get(i) + " ");
+                	 int [] features1 = new int [12];
+                	
+                	features1[i] =  Character.getNumericValue(normalizedBodyChain.charAt(normalizedBodyChain.get(i)));
+                }
+                System.out.println();
+                System.out.println();
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+  		
+		return normalizedBodyChain;
+  	}
+  
   public static void main(String[] args) throws IOException {
     // generate the model from URL
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
