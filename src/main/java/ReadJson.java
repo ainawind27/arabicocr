@@ -25,16 +25,16 @@ public class ReadJson {
             	JSONObject segment = iterator.next();
                 
             	String label = (String) segment.get("label");
-                System.out.println(label);
+//                System.out.println(label);
                 
                 Long labelId = (long) segment.get("labelId");
-                System.out.println(labelId);
+ //               System.out.println(labelId);
                 
                 Long dotCount = (Long) segment.get("dotCount");
-                System.out.println(dotCount);
+  //              System.out.println(dotCount);
                 
                 Long dotPos= (Long) segment.get("dotPos");
-                System.out.println(dotPos);
+ //               System.out.println(dotPos);
                 
                 JSONArray temp = (JSONArray) segment.get("normalizedBodyChain");
                 Iterator<Long> bodyChain = temp.iterator();
@@ -44,10 +44,10 @@ public class ReadJson {
                 }
                 
                 for(int i=0;i<normalizedBodyChain.size();++i) {
-                	System.out.print(normalizedBodyChain.get(i) + " ");
+ //               	System.out.print(normalizedBodyChain.get(i) + " ");
                 }
-                System.out.println();
-                System.out.println();
+//                System.out.println();
+//                System.out.println();
 
 //                
 //                System.out.println(dotCount);
