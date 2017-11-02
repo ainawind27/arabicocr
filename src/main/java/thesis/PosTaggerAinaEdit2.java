@@ -416,7 +416,6 @@ public final class PosTaggerAinaEdit2 {
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
 //    testModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/test.txt");
     trainModel("file:///D:/hmm baru aina/trainarabic2.txt");
-    
     testModel("file:///D:/hmm baru aina/testarabic2.txt");
 
     // tag an exemplary sentence
