@@ -47,6 +47,8 @@ public final class PosTagger {
   private static final Pattern SPACE = Pattern.compile(" ");
   private static final Pattern SPACES = Pattern.compile("[ ]+");
 
+  static int correctCount;
+  static int totalInputPrediksi;
   /**
    * No public constructors for utility classes.
    */
@@ -293,7 +295,42 @@ public final class PosTagger {
 			"sheen", "sin", "tamarbuto", "ta", "tho",
 			"tsa", "waw", "ya", "za","lamalif"
 			);
-
+  
+  //segment.setLabel(LABELS.get(labelId));
+  public static boolean inputPrediksi (String test, String namahuruf) {
+	  
+	  totalInputPrediksi++;
+	  
+	  String [] testWords;
+	  List<String>posTags;
+	//  String test = "McDonalds is a huge company with many employees .";
+	    testWords = SPACE.split(test);
+	    posTags = tagSentence(test);
+	    log.info("Testing {} ...{}", test , namahuruf);
+	    
+	    String firstPosTagStr = posTags.get(0);
+	    int firstposTagint = Integer.parseInt(firstPosTagStr);
+	    String firstnameOfCharacter = LABELS.get(firstposTagint);
+	    
+	    boolean cekHasilPrediksi = namahuruf.equals(firstnameOfCharacter);
+	    
+	    if (cekHasilPrediksi == false) {
+	    	System.out.println("WRONG");
+	    } else {
+	    	System.out.println("OK");
+	    	correctCount++;
+	    }
+	    
+	    for (int i = 0; i < posTags.size(); ++i) {
+	    	 String numberposTag = posTags.get(i);
+	    	 int numberposTagInt = Integer.parseInt(numberposTag);
+	    	 String nameOfCharacter = LABELS.get(numberposTagInt);
+	      log.info("{} -> {} -> {}", testWords[i], numberposTag , nameOfCharacter);
+	    }
+	    
+	    return cekHasilPrediksi;
+  }
+  
   public static void main(String[] args) throws IOException {
     // generate the model from URL
 //    trainModel("http://www.jaist.ac.jp/~hieuxuan/flexcrfs/CoNLL2000-NP/train.txt");
@@ -599,8 +636,162 @@ public final class PosTagger {
 //    }
     
     
-    // batas test kalimat 
-    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 1
+    // batas test kalimat 1
+//    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 1
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 6 6 6 6 6 6 6 6 8 8"; // lam 2
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//
+//    test = "2 0 4 4 2 1 7 4 8 3 5 6"; // qaf 3
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 4 3 3 6 8 1 4 2 7 6"; // mim 4
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 6 5 6 6 6 7 7 8 8 8"; // ra 5
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "2 0 6 6 6 6 6 8 8 8 8 8"; // ta 6
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "1 2 6 6 6 6 6 6 8 8 8 8"; // ba 7
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 5 5 6 6 6 8 8 8 8 8 1"; // dal 8
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 6 6 7 8 1 5 4 3 2 1"; // waw 9
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "1 2 4 4 5 4 8 8 8 8 8 8"; // jim 10
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 4 3 3 5 4 8 8 2 7 6"; // mim 11
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "2 2 6 6 6 6 6 8 8 8 8 8"; // ya 12
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 6 6 6 6 6 6 6 6 8 8"; // lam 13
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "2 0 6 6 6 4 8 3 4 4 2 2"; // tamarbuto 14
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "1 2 4 4 5 4 8 8 8 8 8 8"; // jim 15
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 5 5 6 6 6 8 8 8 8 1"; // dal 16
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+//    
+//    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 17
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...", test);
+//    for (int i = 0; i < posTags.size(); ++i) {
+//      log.info("{} -> {}", testWords[i], posTags.get(i));
+//    }
+    
+    //kalimat 1
+    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 0
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -609,16 +800,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 6 6 6 6 6 6 6 6 8 8"; // lam 2
-//  String test = "McDonalds is a huge company with many employees .";
-    testWords = SPACE.split(test);
-    posTags = tagSentence(test);
-    log.info("Testing {} ...", test);
-    for (int i = 0; i < posTags.size(); ++i) {
-      log.info("{} -> {}", testWords[i], posTags.get(i));
-    }
-
-    test = "2 0 4 4 2 1 7 4 8 3 5 6"; // qaf 3
+    test = "0 0 6 5 2 2 6 3 4 2 6 6"; // lamalif 1
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -627,7 +809,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 4 3 3 6 8 1 4 2 7 6"; // mim 4
+    test = "0 0 4 4 5 4 8 8 8 8 8 8"; // ha 2
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -636,7 +818,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 6 5 6 6 6 7 7 8 8 8"; // ra 5
+    test = "2 0 6 6 6 6 6 4 8 8 8 8"; // ta 3
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -645,7 +827,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "2 0 6 6 6 6 6 8 8 8 8 8"; // ta 6
+    test = "0 0 6 6 6 6 7 7 7 8 8 8"; // ra 4
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -654,7 +836,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "1 2 6 6 6 6 6 6 8 8 8 8"; // ba 7
+    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 5
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -663,7 +845,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 5 5 6 6 6 8 8 8 8 8 1"; // dal 8
+    test = "0 0 6 6 8 6 6 2 2 4 2 8"; // mim 6
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -672,7 +854,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 6 6 7 8 1 5 4 3 2 1"; // waw 9
+    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 7
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -681,7 +863,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "1 2 4 4 5 4 8 8 8 8 8 8"; // jim 10
+    test = "0 0 6 6 6 6 6 6 6 6 8 8"; // lam 8
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -690,7 +872,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 4 3 3 5 4 8 8 2 7 6"; // mim 11
+    test = "0 0 4 3 3 6 8 1 4 2 7 6"; // mim 9
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -699,7 +881,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "2 2 6 6 6 6 6 8 8 8 8 8"; // ya 12
+    test = "2 0 6 6 6 6 6 8 8 8 8 8"; // ta 10
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -708,7 +890,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 6 6 6 6 6 6 6 6 8 8"; // lam 13
+    test = "1 2 6 6 6 6 6 6 8 8 8 8"; // ba 11
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -717,7 +899,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "2 0 6 6 6 4 8 3 4 4 2 2"; // tamarbuto 14
+    test = "0 0 6 6 6 6 6 6 6 6 4 4"; // alif 12
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -726,7 +908,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "1 2 4 4 5 4 8 8 8 8 8 8"; // jim 15
+    test = "0 0 5 5 6 6 8 8 8 8 1 2"; // dal 13
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -735,7 +917,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 5 5 6 6 6 8 8 8 8 1"; // dal 16
+    test = "0 0 6 6 6 6 6 8 8 1 2 2"; // lam 14
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -744,7 +926,7 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
-    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 17
+    test = "1 2 6 6 6 6 6 6 8 8 8 8"; // ba 15
 //  String test = "McDonalds is a huge company with many employees .";
     testWords = SPACE.split(test);
     posTags = tagSentence(test);
@@ -753,8 +935,102 @@ public final class PosTagger {
       log.info("{} -> {}", testWords[i], posTags.get(i));
     }
     
+    test = "2 2 6 6 6 6 4 8 8 8 1 2"; // ya 16
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "1 0 6 6 6 7 8 8 1 2 2 2"; // nun 17
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "0 0 6 6 6 6 6 6 6 6 6 6"; // alif 18
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "0 0 6 6 1 1 6 3 4 2 5 5"; // lamalif 19
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "0 0 5 5 6 6 8 8 8 8 1 2"; // dal 20
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "2 2 6 6 6 6 6 6 8 8 8 8"; // ya 21
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+    test = "0 0 6 6 6 6 6 6 6 6 5 4"; // alif 22
+//  String test = "McDonalds is a huge company with many employees .";
+    testWords = SPACE.split(test);
+    posTags = tagSentence(test);
+    log.info("Testing {} ...", test);
+    for (int i = 0; i < posTags.size(); ++i) {
+      log.info("{} -> {}", testWords[i], posTags.get(i));
+    }
+    
+//    test = "0 0 6 6 6 7 8 8 8 1 2 2"; // nun 23
+//    String namahuruf = "nun";
+////  String test = "McDonalds is a huge company with many employees .";
+//    testWords = SPACE.split(test);
+//    posTags = tagSentence(test);
+//    log.info("Testing {} ...{}", test , namahuruf);
+//    
+//    String firstPosTagStr = posTags.get(0);
+//    int firstposTagint = Integer.parseInt(firstPosTagStr);
+//    String firstnameOfCharacter = LABELS.get(firstposTagint);
+//    
+//    boolean cekHasilPrediksi = namahuruf.equals(firstnameOfCharacter);
+//    
+//    if (cekHasilPrediksi == false) {
+//    	System.out.println("WRONG");
+//    } else {
+//    	System.out.println("OK");
+//    }
+//    
+//    for (int i = 0; i < posTags.size(); ++i) {
+//    	 String numberposTag = posTags.get(i);
+//    	 int numberposTagInt = Integer.parseInt(numberposTag);
+//    	 String nameOfCharacter = LABELS.get(numberposTagInt);
+//      log.info("{} -> {} -> {}", testWords[i], numberposTag , nameOfCharacter);
+//    }
+    
+    inputPrediksi("0 0 6 6 6 7 8 8 8 1 2 2", "nun");
+    inputPrediksi("0 0 6 6 6 6 6 6 6 6 5 4", "alif");
+    inputPrediksi("2 2 6 6 6 6 6 6 8 8 8 8", "ya");
+    
+    int accuracy;
+    
+    accuracy = 100*correctCount/totalInputPrediksi;
+    log.info("Accuracy = {}%", accuracy);
   }
-  
-  
-
 }
