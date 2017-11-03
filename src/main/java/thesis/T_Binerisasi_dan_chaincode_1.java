@@ -45,7 +45,7 @@ public class T_Binerisasi_dan_chaincode_1 {
 
 	static public void main(String args[]) throws Exception {
 		// T_Binerisasi_dan_chaincode_1.binerisasi("D:\\lam.PNG", 127);
-		int[][] chaincode = T_Binerisasi_dan_chaincode_1.binerisasi("D:\\Thin\\dzo_terpisah2.PNG", 127);
+		int[][] chaincode = T_Binerisasi_dan_chaincode_1.binerisasi("D:\\filetraining\\zhangsuen\\arial_ain_terpisah_zhangsuen.PNG", 127);
 		ChainCode c = new ChainCode();
 		List<ChainInfo> chains = c.chain2(chaincode);
 		System.out.println(chains);
