@@ -12,9 +12,9 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-		File input = new File(fileLocation, "kalimat5.png");
-	//	File input = new File(fileLocation, "tah_kalimat10.png");
-	//	File input = new File(fileLocation, "ar_kalimat10.png");	
+//		File input = new File(fileLocation, "kalimat10.png");
+//		File input = new File(fileLocation, "tah_kalimat3.png");
+		File input = new File(fileLocation, "ar_kalimat6.png");	
 		//kalimat1, hasil 79%
 //		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", "ra", 
 //									"alif", "mim", 
@@ -22,7 +22,7 @@ public class SegmentationANNPrediction {
 //									"dal", "lam", "ba", "ya", "nun", "alif",
 //									"lamalif", "dal", "ya", "alif", "nun"};
 		//ar_kalimat1
-//		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", 
+//		String[] expectedResult = { "alif", "lamalif", "ha" , "ra", 
 //									"alif", "mim", 
 //									"alif", "lam", "mim", "ta", "ba", "alif",
 //									"dal", "lam", "ba", "ya", "alif",
@@ -33,7 +33,7 @@ public class SegmentationANNPrediction {
 //									"alif", "lam", "mim", "ta", "ba", "alif",
 //									"dal", "lam", "unknown","ba", "ya", "nun", "alif",
 //									"lamalif", "dal", "ya", "alif", "nun", "nun"};
-//		//kalimat2, 82%
+		//kalimat2, 82%
 //		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
 //									"ta", "ba", 
 //									"dal", "waw", "jim", "mim", "ya", "lam",
@@ -50,7 +50,7 @@ public class SegmentationANNPrediction {
 //									"dzal" , "waw", "alif", "qaf" , "jim", "ya", "dal", 
 //									"tamarbuto"};
 		//ar_kalimat3
-//		String[] expectedResult = { "fa", "alif", "kaf" , "tamarbuto", "dal",
+//		String[] expectedResult = { "fa", "alif", "ha" , "tamarbuto", "dal",
 //									"waw", "ra", 
 //									"ya", "alif", "nun","alif", "lamalif",
 //									"dzal" , "waw", "alif", "qaf" , "jim", "ya", "dal", 
@@ -63,15 +63,15 @@ public class SegmentationANNPrediction {
 //									"ha", "ya", "alif", "tamarbuto"};
 		
 		//ar_kalimat4
-//		String[] expectedResult = { "ta", "ta", "kha" , "lam", 
+//		String[] expectedResult = { "ta", "ta", "kha" , "ya", 
 //									"alif", "ba", 
 //									"dal", "alif", "fa", "ya", "alif", "lam",
 //									"ha", "ya", "alif", "tamarbuto"};
 		//kalimat5, hasil 76%
-		String[] expectedResult = { "alif", "nun", "ta" , "dzo", "ra", 
-									"alif", "ya", 
-									"mim", "ha", "alif", "kaf", "mim", "tamarbuto",
-									};
+//		String[] expectedResult = { "alif", "nun", "ta" , "dzo", "ra", 
+//									"alif", "ya", 
+//									"mim", "ha", "alif", "kaf", "mim", "tamarbuto",
+//									};
 //		//tah_kalimat5
 //		String[] expectedResult = { "alif", "nun", "ta" , "dzo", "ra", 
 //									"alif", "ya", "ya",
@@ -83,11 +83,11 @@ public class SegmentationANNPrediction {
 //									"kaf" , "unknown", "ha", "ya", "alif", 
 //									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
 	//ar_kalimat6
-//		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", 
-//									"dzo", "ain", "lam", 
-//									 "sad", "unknown", "ha", "ta",
-//									"kaf" , "unknown", "ha", "ya", "alif", 
-//									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
+		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", 
+									"dzo", "ain", "ya", 
+									 "sad", "unknown", "ha", "ta",
+									"kaf" , "unknown", "ha", "ya", "alif", 
+									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
 		//tah_kalimat6
 //		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
 //									"ya", "sad", "ha", "ta",
