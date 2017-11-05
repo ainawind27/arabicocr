@@ -1375,31 +1375,101 @@ public final class PosTagger {
 //    inputPrediksi("0 0 4 3 6 5 8 4 3 2 8 6","mim");
 //    inputPrediksi("2 0 6 6 5 8 3 8 5 4 2 2","tamarbuto");
     
- //kalimat 6
+ // kalimat 6
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 7 8","lam");
+//    inputPrediksi("0 0 4 4 4 6 5 4 8 1 8 8","ha");
+//    inputPrediksi("1 0 4 2 4 6 4 4 3 1 7 6","fa");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 5 4","alif"); 
+//    inputPrediksi("1 0 6 6 3 5 8 8 6 4 8 8","dzo"); 
+//    inputPrediksi("0 0 1 8 7 6 5 4 4 8 8 8","ain"); 
+//    inputPrediksi("0 0 6 6 6 6 8 8 7 8 8 2","ya"); 
+//    inputPrediksi("0 0 4 6 8 8 3 7 4 4 2 8","sad"); 
+//    inputPrediksi("0 0 6 6 6 6 6 5 1 1 8 8","unknown");
+//    inputPrediksi("0 0 4 4 4 6 5 4 8 1 8 8","ha");
+//    inputPrediksi("2 0 6 6 6 6 5 4 8 1 8 8","ta");
+//    inputPrediksi("1 0 6 6 6 6 6 6 6 2 8 8","kaf");
+//    inputPrediksi("0 0 6 6 6 6 6 5 5 5 4 4","unknown");
+//    inputPrediksi("0 0 4 4 4 5 8 8 8 4 4 4","ha");
+//    inputPrediksi("2 2 6 6 6 6 6 4 4 8 8 8","ya");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 4","alif");
+//    inputPrediksi("2 0 5 6 8 2 3 7 6 4 2 1","tamarbuto");
+//    inputPrediksi("0 0 6 6 3 5 8 8 4 4 1 7","tho");
+//    inputPrediksi("2 2 6 6 6 6 5 4 8 1 8 8","ya");
+//    inputPrediksi("1 2 6 6 6 6 6 6 4 8 8 8","ba");
+//    inputPrediksi("2 0 6 6 6 8 3 8 5 4 2 2","tamarbuto");
+
+    //kalimat 7
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 7 8","lam");
+//    inputPrediksi("0 0 4 3 6 5 8 4 8 2 8 6","mim");
+//    inputPrediksi("0 0 4 3 4 6 5 8 1 2 8 5","ain");
+//    inputPrediksi("0 0 6 6 6 8 1 7 4 8 3 6","mim"); 
+//    inputPrediksi("3 2 6 6 8 2 6 8 8 1 2 2","ya"); 
+//    inputPrediksi("1 2 6 6 6 6 6 7 7 8 8 8","ba"); 
+//    inputPrediksi("0 0 4 1 4 6 4 4 1 8 7 5","ain");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 4 1 8","lam");
+//    inputPrediksi("0 0 8 2 7 4 4 4 8 2 5 6","mim");
+//    inputPrediksi("0 0 8 1 5 6 8 4 2 1 4 6","waw");
+//    inputPrediksi("1 0 6 6 6 7 8 8 1 2 2 2","nun");
     
-    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+    //kalimat 8
+//    inputPrediksi("1 2 6 4 5 8 8 4 4 1 8 8","jim");
+//    inputPrediksi("0 0 5 6 6 6 5 8 1 8 8 8","dal");
+//    inputPrediksi("2 0 5 6 8 1 3 7 5 4 2 1","tamarbuto");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+//    inputPrediksi("0 0 6 6 6 6 6 6 1 5 8 8","lamalif");
+//    inputPrediksi("0 0 6 6 6 6 6 7 8 8 8 8","ra"); 
+//    inputPrediksi("1 0 6 6 6 6 6 7 8 8 8 8","za"); 
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 7 8","lam");
+//    inputPrediksi("0 0 8 2 7 4 4 4 8 2 5 6","mim"); 
+//    inputPrediksi("0 0 6 6 3 5 8 2 4 4 8 8","tho");
+//    inputPrediksi("1 2 6 6 6 6 6 4 8 8 8 8","ba");
+//    inputPrediksi("0 0 4 4 2 1 3 6 2 8 5 4","waw");
+//    inputPrediksi("1 0 4 4 5 8 7 6 5 4 4 4","kha");
+    
+    //kalimat 9
+//    inputPrediksi("1 2 6 6 6 6 6 6 7 8 8 8","ba");
+//    inputPrediksi("2 0 6 6 6 6 6 6 4 8 8 8","ta");
+//    inputPrediksi("0 0 6 8 5 5 5 6 8 4 2 1","kaf");
+//    inputPrediksi("0 0 6 6 6 8 8 4 6 3 2 6","lam");
+//    inputPrediksi("1 2 6 6 6 6 6 6 7 7 8 8","ba");
+//    inputPrediksi("1 2 6 6 6 6 5 4 8 1 8 8","ba");
+//    inputPrediksi("0 0 6 6 3 5 8 8 4 4 8 8","tho");
+//    inputPrediksi("0 0 6 5 8 7 5 4 4 8 8 8","ain"); 
+//    inputPrediksi("0 0 4 2 4 6 8 4 2 1 7 6","mim"); 
+//    inputPrediksi("1 0 4 2 4 6 4 4 8 2 8 6","fa");
+//    inputPrediksi("0 0 4 6 4 5 1 5 2 4 2 6","habesar");
+//    inputPrediksi("0 0 8 1 5 6 8 4 3 1 4 6","waw");
+//    inputPrediksi("0 0 4 2 4 6 8 4 2 1 7 6","mim");
+//    inputPrediksi("2 0 6 6 5 8 3 8 5 4 2 2","tamarbuto"); 
+//    inputPrediksi("0 0 4 4 4 4 5 6 8 8 8 8","ha"); 
+//    inputPrediksi("2 2 6 8 8 8 8 1 6 4 4 2","ya"); 
+ 
+    //kalimat 10
+    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif"); 
     inputPrediksi("0 0 6 6 6 6 6 6 6 6 7 8","lam");
-    inputPrediksi("0 0 4 4 4 6 5 4 8 1 8 8","ha");
-    inputPrediksi("1 0 4 2 4 6 4 4 3 1 7 6","fa");
-    inputPrediksi("0 0 6 6 6 6 6 6 6 6 5 4","alif"); 
-    inputPrediksi("1 0 6 6 3 5 8 8 6 4 8 8","dzo"); 
-    inputPrediksi("0 0 1 8 7 6 5 4 4 8 8 8","ain"); 
-    inputPrediksi("0 0 6 6 6 6 8 8 7 8 8 2","ya"); 
+    inputPrediksi("0 0 4 4 4 6 5 4 1 8 8 8","ha"); 
+    inputPrediksi("1 0 4 2 4 6 4 4 8 2 8 5","fa");
+    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 4","lam"); 
+    inputPrediksi("1 0 6 6 3 5 8 8 6 4 1 7","dzo");
+    inputPrediksi("0 0 1 8 7 5 4 4 8 8 7 8","ain");
+    inputPrediksi("2 2 6 6 6 6 8 8 7 8 8 2","ya"); 
     inputPrediksi("0 0 4 6 8 8 3 7 4 4 2 8","sad"); 
-    inputPrediksi("0 0 6 6 6 6 6 5 1 1 8 8","unknown");
-    inputPrediksi("0 0 4 4 4 6 5 4 8 1 8 8","ha");
-    inputPrediksi("2 0 6 6 6 6 5 4 8 1 8 8","ta");
-    inputPrediksi("1 0 6 6 6 6 6 6 6 2 8 8","kaf");
-    inputPrediksi("0 0 6 6 6 6 6 5 5 5 4 4","unknown");
-    inputPrediksi("0 0 4 4 4 5 8 8 8 4 4 4","ha");
-    inputPrediksi("2 2 6 6 6 6 6 4 4 8 8 8","ya");
-    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 4","alif");
+    inputPrediksi("0 0 6 6 6 6 5 5 1 1 8 8","unknown"); 
+    inputPrediksi("0 0 4 4 4 6 5 4 1 8 8 8","ha"); 
+    inputPrediksi("2 0 6 6 6 6 5 4 8 1 8 8","ta"); 
+    inputPrediksi("1 0 6 6 6 6 6 6 6 7 8 8","kaf");
+    inputPrediksi("0 0 6 6 6 6 6 6 5 5 5 5","unknown");
+    inputPrediksi("0 0 4 4 4 4 5 6 8 8 8 8","ha"); 
+    inputPrediksi("2 2 6 6 6 6 6 6 4 8 8 8","ya"); 
+    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 5","alif");
     inputPrediksi("2 0 5 6 8 2 3 7 6 4 2 1","tamarbuto");
     inputPrediksi("0 0 6 6 3 5 8 8 4 4 1 7","tho");
     inputPrediksi("2 2 6 6 6 6 5 4 8 1 8 8","ya");
     inputPrediksi("1 2 6 6 6 6 6 6 4 8 8 8","ba");
     inputPrediksi("2 0 6 6 6 8 3 8 5 4 2 2","tamarbuto");
-    
     int accuracy;
     accuracy = 100*correctCount/totalInputPrediksi;
     log.info("Accuracy = {}%", accuracy);

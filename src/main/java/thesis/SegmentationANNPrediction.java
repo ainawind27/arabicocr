@@ -14,7 +14,7 @@ public class SegmentationANNPrediction {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
 //		File input = new File(fileLocation, "kalimat10.png");
 //		File input = new File(fileLocation, "tah_kalimat3.png");
-		File input = new File(fileLocation, "ar_kalimat6.png");	
+		File input = new File(fileLocation, "ar_kalimat10.png");	
 		//kalimat1, hasil 79%
 //		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", "ra", 
 //									"alif", "mim", 
@@ -83,11 +83,11 @@ public class SegmentationANNPrediction {
 //									"kaf" , "unknown", "ha", "ya", "alif", 
 //									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
 	//ar_kalimat6
-		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", 
-									"dzo", "ain", "ya", 
-									 "sad", "unknown", "ha", "ta",
-									"kaf" , "unknown", "ha", "ya", "alif", 
-									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
+//		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", 
+//									"dzo", "ain", "ya", 
+//									 "sad", "unknown", "ha", "ta",
+//									"kaf" , "unknown", "ha", "ya", "alif", 
+//									"tamarbuto", "tho", "ya", "ba", "tamarbuto"};
 		//tah_kalimat6
 //		String[] expectedResult = { "alif", "lam", "ha", "fa", "alif", "dzo", "ain", "lam", 
 //									"ya", "sad", "ha", "ta",
@@ -118,7 +118,7 @@ public class SegmentationANNPrediction {
 //		String[] expectedResult = { "ya", "ta", "kaf" , "lam",  
 //									"ba", "ba", 
 //									"tho", "hamzah", "mim", "fa", "habesar", "waw",
-//									"mim", "tamarbuto", "ha", "ta"};
+//									"mim", "tamarbuto", "ha", "ya"};
 		
 		//kalimat10, 68%
 //		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ainlam", "ya", 
@@ -134,12 +134,12 @@ public class SegmentationANNPrediction {
 //									"ya", "ba", "tamarbuto"};
 		
 		//ar_kalimat10
-//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain",
-//									"lam",  
-//									"sad", "unknown", "ha", "ta",
-//									"kaf" , "unknown", "ha", "ya" , 
-//									"alif", "tamarbuto", "tho", 
-//									"ya", "ba", "tamarbuto"};
+		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain",
+									"ya",  
+									"sad", "unknown", "ha", "ta",
+									"kaf" , "unknown", "ha", "ya" , 
+									"alif", "tamarbuto", "tho", 
+									"ya", "ba", "tamarbuto"};
 		
 
 		BinaryImageShell image = new BinaryImageShell(input);
