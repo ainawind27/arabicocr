@@ -12,9 +12,9 @@ public class SegmentationANNPrediction {
 
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
-//		File input = new File(fileLocation, "kalimat10.png");
-//		File input = new File(fileLocation, "tah_kalimat3.png");
-		File input = new File(fileLocation, "ar_kalimat10.png");	
+//		File input = new File(fileLocation, "kalimat1.png");
+		File input = new File(fileLocation, "tah_kalimat10.png");
+//		File input = new File(fileLocation, "ar_kalimat10.png");	
 		//kalimat1, hasil 79%
 //		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", "ra", 
 //									"alif", "mim", 
@@ -33,7 +33,7 @@ public class SegmentationANNPrediction {
 //									"alif", "lam", "mim", "ta", "ba", "alif",
 //									"dal", "lam", "unknown","ba", "ya", "nun", "alif",
 //									"lamalif", "dal", "ya", "alif", "nun", "nun"};
-		//kalimat2, 82%
+//		//kalimat2, 82%
 //		String[] expectedResult = { "alif", "lam", "qaf" , "mim", "ra", 
 //									"ta", "ba", 
 //									"dal", "waw", "jim", "mim", "ya", "lam",
@@ -98,7 +98,7 @@ public class SegmentationANNPrediction {
 //		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
 //									"mim", "ya", 
 //									"nun", "ya", "ain", "lam", "mim", "waw",
-//									"nun"};
+//									"nun", "nun"};
 		//ar_kalimat7
 //		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
 //									 "ya", 
@@ -126,20 +126,20 @@ public class SegmentationANNPrediction {
 //									"kaf" , "unknown", "ha", "ya" , "alif", "tamarbuto", "tho", 
 //									"ya", "ba", "tamarbuto"};
 		//tah_kalimat10
-//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain",
-//									"lam", "ya", 
-//									"sad", "ha", "ta",
-//									"kaf" , "unknown", "ha", "ya" , 
-//									"alif", "tamarbuto", "tho", 
-//									"ya", "ba", "tamarbuto"};
-		
-		//ar_kalimat10
 		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain",
-									"ya",  
-									"sad", "unknown", "ha", "ta",
+									"lam", "ya", 
+									"sad", "ha", "ta",
 									"kaf" , "unknown", "ha", "ya" , 
 									"alif", "tamarbuto", "tho", 
 									"ya", "ba", "tamarbuto"};
+		
+		//ar_kalimat10
+//		String[] expectedResult = { "alif", "lam", "ha" , "fa", "alif", "dzo", "ain",
+//									"ya",  
+//									"sad", "unknown", "ha", "ta",
+//									"kaf" , "unknown", "ha", "ya" , 
+//									"alif", "tamarbuto", "tho", 
+//									"ya", "ba", "tamarbuto"};
 		
 
 		BinaryImageShell image = new BinaryImageShell(input);
