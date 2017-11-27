@@ -42,9 +42,9 @@ import java.util.regex.Pattern;
  * details regarding the data files can be found at
  * http://flexcrfs.sourceforge.net/#Case_Study
  */
-public final class PosTagger {
+public final class ArabicHMM {
 
-  private static final Logger log = LoggerFactory.getLogger(PosTagger.class);
+  private static final Logger log = LoggerFactory.getLogger(ArabicHMM.class);
 
   private static final Pattern SPACE = Pattern.compile(" ");
   private static final Pattern SPACES = Pattern.compile("[ ]+");
@@ -54,7 +54,7 @@ public final class PosTagger {
   /**
    * No public constructors for utility classes.
    */
-  private PosTagger() {
+  private ArabicHMM() {
     // nothing to do here really.
   }
 
@@ -219,8 +219,9 @@ public final class PosTagger {
 	        observedSequences,
 	        // pseudo-count
 	        0.05);
- //   System.out.println("hidden adalah " +hiddenSequences);
-    // for Arabic --> no adjustment of emissions
+    
+//    System.out.println("hidden adalah " +hiddenSequences);
+//   //  for Arabic --> no adjustment of emissions
 //    // we have to adjust the model a bit,
 //    // since we assume a higher probability that a given unknown word is NNP
 //    // than anything else
@@ -231,6 +232,7 @@ public final class PosTagger {
 //    int nnptag = tagIDs.get("NNP");
 //    emissions.setQuick(nnptag, 0, 1 / (double) taggingModel.getNrOfHiddenStates());
 
+    
     // re-normalize the emission probabilities
     HmmUtils.normalizeModel(taggingModel);
     // now register the names
@@ -357,6 +359,7 @@ public final class PosTagger {
     trainModel("file:///D:/hmm baru aina/trainarial.txt");
     testModel("file:///D:/hmm baru aina/testarial.txt");
     
+
 //   trainModel("file:///D:/hmm baru aina/traintnr.txt");
 //    testModel("file:///D:/hmm baru aina/testtnr.txt");
 ////	
