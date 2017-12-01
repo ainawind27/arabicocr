@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import model.Zhangsuen2;
+import model.Stentiford;
 import image.BinaryImageShell;
 import image.segmentator.*;
 import java.util.ArrayList;

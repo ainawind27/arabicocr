@@ -16,7 +16,7 @@ import image.MainbodySOSet;
 import image.segmentator.SegmentatorChar;
 import image.segmentator.SegmentatorSubword;
 
-public class Zhangsuen2 {
+public class Stentiford {
 
 	// Atribure
 	Point[] Pos;
@@ -26,7 +26,7 @@ public class Zhangsuen2 {
 	int heightImg;
 	BufferedImage imgSrc;
 
-	public Zhangsuen2(BufferedImage imgSrc, String name) {
+	public Stentiford(BufferedImage imgSrc, String name) {
 		// create binaryImage
 		this.imgSrc = imgSrc;
 		widthImg = imgSrc.getWidth();
@@ -47,30 +47,30 @@ public class Zhangsuen2 {
 			}
 			// System.out.println();
 		}
-//		try {
-//			String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a\\";
-//			File folder = new File(fileLocation);
-//			File targetFolder = new File(folder, "binerz");
-//			File thinnedFile = new File(fileLocation, name);
-//
-//			BufferedImage image = new BufferedImage(binaryImage.length, binaryImage[0].length,
-//					BufferedImage.TYPE_3BYTE_BGR);
-//
-//			for (int i = 0; i < binaryImage.length; i++) {
-//				for (int j = 0; j < binaryImage[i].length; j++) {
-//					System.out.print(binaryImage[i][j]);
-//					if (binaryImage[i][j] == 0) {
-//						image.setRGB(i, j, Color.white.getRGB());
-//					} else {
-//						image.setRGB(i, j, Color.black.getRGB());
-//					}
-//				}
-//				System.out.println();
-//			}
-//			ImageIO.write(image, "png", thinnedFile);
-//		} catch (IOException e) {
-//
-//		}
+		try {
+			String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a\\";
+			File folder = new File(fileLocation);
+			File targetFolder = new File(folder, "binerz");
+			File thinnedFile = new File(fileLocation, name);
+
+			BufferedImage image = new BufferedImage(binaryImage.length, binaryImage[0].length,
+					BufferedImage.TYPE_3BYTE_BGR);
+
+			for (int i = 0; i < binaryImage.length; i++) {
+				for (int j = 0; j < binaryImage[i].length; j++) {
+					System.out.print(binaryImage[i][j]);
+					if (binaryImage[i][j] == 0) {
+						image.setRGB(i, j, Color.white.getRGB());
+					} else {
+						image.setRGB(i, j, Color.black.getRGB());
+					}
+				}
+				System.out.println();
+			}
+			ImageIO.write(image, "png", thinnedFile);
+		} catch (IOException e) {
+
+		}
 
 		// create LokasiTetangga
 
@@ -140,7 +140,7 @@ public class Zhangsuen2 {
 		}
 	}
 
-	public BufferedImage doZhangSuen() {
+	public BufferedImage doStentiford() {
 		TandaiHapus = new ArrayList<Point>();
 		Point Titik_Sekarang;
 		boolean stop;

@@ -20,8 +20,6 @@ import java.util.Collections;
  * @todo Memastikan bahwa komponen sekunder tidak terpotong dengan menyesuaikan
  * besar badan utama.
  *
- * @author Albadr
- * @author Gazandi
  */
 public class SegmentatorChar {
 

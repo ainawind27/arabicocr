@@ -26,8 +26,6 @@ import java.util.ArrayList;
  * 4. Menyediakan setiap baris yang berhasil dipotong sehingga bisa diambil
  * berdasarkan nomor baris atau piksel posisi klik mouse.
  *
- * @author Albadr
- * @author Gazandi
  */
 public class SegmentatorLine {
 

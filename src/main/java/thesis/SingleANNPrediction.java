@@ -10,6 +10,7 @@ public class SingleANNPrediction {
 //		File folder = new File ("D:\\filetesting\\");	
 		
 		File folder = new File ("D:\\font tesis aina\\font arial unicode ms\\");
+//		File folder = new File ("D:\\lamalif\\");
 //		File folder = new File ("D:\\font tesis aina\\font tahoma\\");
 //		File folder = new File ("D:\\font tesis aina\\font times new roman\\");
 		
@@ -17,6 +18,13 @@ public class SingleANNPrediction {
 //		File folder = new File ("D:\\font tesis aina\\font microsoft sans serif\\huruf_tunggal\\");
 //		File folder = new File ("D:\\font tesis aina\\font segoe ui\\huruf tunggal\\");
 //		File folder = new File ("D:\\font tesis aina\\font nazanin\\huruf tunggal");
+		
+		
+		
+		
+		
+		
+		
 		File folder1 = new File(folder, "zhangsuen");
 		File featuresFile = new File(folder1, "zhangsuen.Features.json");
 		
@@ -35,6 +43,10 @@ public class SingleANNPrediction {
 									"lamalif", "lam", "mim", "nun", "qaf",
 									"ra", "sad", "sheen", "sin", "tamarbuto",
 									"ta", "tho", "tsa", "waw", "ya", "za"};
+		
+//		String[] expectedResult = {"lamalif", "lamalif", "lamalif", "lamalif", "lamalif",
+//								"lamalif"};
+		
 		//test
 		
 		ArabicPrediction arabicprediction1 = new ArabicPrediction();
@@ -55,8 +67,9 @@ public class SingleANNPrediction {
 				System.out.println(i + " - " + expected + " -> " + predicted + " (WRONG)");
 			}
 		}
-		double accuracy = correctCount * 1.0 / expectedResult.length;
-		System.out.println("Accuracy: " + accuracy);
+		//double accuracy = correctCount * 1.0 / expectedResult.length;
+		int accuracy = correctCount * 100 / expectedResult.length;
+		System.out.println("Accuracy: " + accuracy + "%");
 
 		
 	}

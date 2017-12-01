@@ -15,8 +15,6 @@ import java.util.Collections;
 
 /**
  *
- * @author Albadr
- * @author Gazandi
  */
 public class SegmentatorSubword {
 

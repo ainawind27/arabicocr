@@ -249,8 +249,8 @@ public class FeatureExtraction {
 	}
 
 	static public void main(String args[]) throws Exception {
-//		File folder = new File("D:\\filetraining\\zhangsuen");
-		File folder = new File("D:\\testfitur\\zhangsuen");
+		File folder = new File("D:\\filetraining\\zhangsuen");
+//		File folder = new File("D:\\1. Hasil Thinning\\stentiford");
 		FeatureExtraction featureextraction = new FeatureExtraction();
 		featureextraction.extractFeatures(folder);
 	}

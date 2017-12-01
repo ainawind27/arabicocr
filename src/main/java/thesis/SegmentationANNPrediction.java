@@ -99,7 +99,7 @@ public class SegmentationANNPrediction {
 //		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
 //									"mim", "ya", 
 //									"nun", "ya", "ain", "lam", "mim", "waw",
-//									"nun", "nun"};
+//									"nun"};
 		//ar_kalimat7
 //		String[] expectedResult = { "alif", "lam", "mim" , "ain", "lam", 
 //									 "ya", 
@@ -171,8 +171,9 @@ public class SegmentationANNPrediction {
 				System.out.println(i + " - " + expected + " -> " + predicted + " (WRONG)");
 			}
 		}
-		double accuracy = correctCount * 1.0 / expectedResult.length;
-		System.out.println("Accuracy: " + accuracy);
+//		double accuracy = correctCount * 1.0 / expectedResult.length;
+		int accuracy = correctCount * 100 / expectedResult.length;
+		System.out.println("Accuracy: " + accuracy +"%");
 
 	}
 }

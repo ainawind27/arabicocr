@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import model.Zhangsuen2;
+import model.Stentiford;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +27,7 @@ public class Thinning1 {
 	public List<File> thinning(File folder, List<File> queuedFiles) throws IOException {
 		final List<File> thinnedFiles = new ArrayList<File>();
 		File targetFolder = new File(folder, "zhangsuen");
+//		File targetFolder = new File(folder, "stentiford");
 		targetFolder.mkdirs();
 		for (int i = 0; i < queuedFiles.size(); i++) {
 			BufferedImage image = ImageIO.read(
@@ -34,8 +35,8 @@ public class Thinning1 {
 				);
 
 			// load the model image
-			Zhangsuen2 thinning = new Zhangsuen2(image, queuedFiles.get(i).getName());
-			BufferedImage thinImage = thinning.doZhangSuen();
+			Stentiford thinning = new Stentiford(image, queuedFiles.get(i).getName());
+			BufferedImage thinImage = thinning.doStentiford();
 
 			File thinnedFile = new File(targetFolder, queuedFiles.get(i).getName().replace(".", "_steintiford."));
 			ImageIO.write(thinImage, "png", thinnedFile);
@@ -52,9 +53,9 @@ public class Thinning1 {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String fileLocation = "D:\\filetraining\\";
-//		String fileLocation = "D:\\test\\";
-//		String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a";
+//		String fileLocation = "D:\\filetraining\\";
+//		String fileLocation = "D:\\Hasil Thinning\\";
+		String fileLocation = "D:\\filetestingsegmentation\\hasilthinning\\a";
 		File folder = new File(fileLocation);
 		Thinning1 thinning = new Thinning1();
 		thinning.thinningZhangSuen(folder);
