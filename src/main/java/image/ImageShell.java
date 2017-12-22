@@ -21,8 +21,8 @@ import javax.swing.JFrame;
  * This class hold as a shell of image (buffered image) loaded from a file.
  * Notes: RGB is written as AARRGGBB and white value is 255
  *
- * @author Albadr
- * @author Gazandi
+ * 
+ *
  */
 public class ImageShell extends Component {
 

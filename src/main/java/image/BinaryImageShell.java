@@ -28,8 +28,8 @@ import java.util.logging.Logger;
  * 1 atau true berarti putih.
  *
  * 
- * @author Albadr
- * @author Gazandi
+ *  
+ * 
  */
 public class BinaryImageShell extends ImageShell {
 

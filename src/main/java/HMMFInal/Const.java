@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Const {
         public static final Const instance = new Const();
-//        public static final String APP_FOLDER = "/home/gazandic" + File.separator + "Aina-Tesis" + File.separator;
+
 //        public static final String TRAIN_DATA = APP_FOLDER +"datasetHurufArab" + File.separator;
 //        public static final String TRAIN2_DATA = APP_FOLDER +"datasetKalimatArab" + File.separator;
 //        public static final String MODEL_DATA = APP_FOLDER +"modelHurufArab/";

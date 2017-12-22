@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Albadr
+ * @author aina
  * @todo Integration with weka J48
  * @todo Code cleanup
  */

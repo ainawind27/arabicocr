@@ -13,8 +13,8 @@ import java.util.ArrayList;
  * Sebuah kelas yang menggabungkan kotak amplop dari sebuah piksel terhubung
  * (atau bertempelan) dan daftar pikselnya sebagai ArrayList.
  *
- * @author Albadr
- * @author Gazandi
+ * 
+ * 
  */
 public class RectAndBlackPoints implements Comparable<RectAndBlackPoints> {
 

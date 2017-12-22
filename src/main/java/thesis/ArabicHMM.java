@@ -521,7 +521,7 @@ public final class ArabicHMM {
 //   inputPrediksi("2 2 6 6 6 6 4 8 8 8 1 2","ya");
 //   inputPrediksi("1 0 6 6 6 7 8 8 1 2 2 2","nun");
 //   inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
-//   inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
+//   inputPrediksi("0 0 6 6 1 1 6 3 4 2 5 5","lamalif");
 //   inputPrediksi("0 0 5 5 6 6 8 8 8 8 1 2","dal");
 //   inputPrediksi("2 2 6 6 6 6 6 6 8 8 8 8","ya");
 //   inputPrediksi("0 0 6 6 6 6 6 6 6 6 5 4","alif");
@@ -546,7 +546,7 @@ public final class ArabicHMM {
 //    inputPrediksi("1 0 5 5 6 6 6 8 8 8 8 1", "dzal");
 //    inputPrediksi("0 0 6 6 7 8 1 5 4 3 2 1", "waw");
 //    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6", "alif");
-//    inputPrediksi("2 0 6 6 4 4 2 1 5 8 3 6", "kaf");
+//    inputPrediksi("2 0 6 6 4 4 2 1 5 8 3 6", "Qaf");
 //    inputPrediksi("1 2 4 4 5 4 8 8 8 8 8 8", "jim");
 //    inputPrediksi("2 2 6 6 6 6 6 8 8 8 8 8", "ya");
 //    inputPrediksi("0 0 5 5 6 6 8 8 8 8 1 2", "dal");
@@ -559,7 +559,7 @@ public final class ArabicHMM {
 //    inputPrediksi("1 0 4 4 5 6 4 8 8 8 8 8", "kha");
 //    inputPrediksi("0 0 6 6 6 6 6 6 6 4 8 8", "lam");
 //    inputPrediksi("2 2 6 6 4 4 4 3 8 2 4 4", "ya");
-//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6", "lam");
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6", "alif");
 //    inputPrediksi("1 2 6 5 6 6 6 6 6 8 8 8", "ba");
 //    inputPrediksi("0 0 5 5 6 6 6 8 8 8 8 2", "dal");
 //    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6", "alif");
@@ -655,10 +655,10 @@ public final class ArabicHMM {
 //    inputPrediksi("1 2 6 6 6 6 6 6 6 8 8 8","ba");
 //    inputPrediksi("1 2 6 6 6 6 6 4 8 8 8 8","ba");
 //    inputPrediksi("0 0 6 6 4 4 8 8 7 4 1 8","tho");
-//    inputPrediksi("0 0 6 8 6 5 4 4 6 2 8 8","ain");
+//    inputPrediksi("0 0 6 8 6 5 4 4 6 2 8 8","hamzah");
 //    inputPrediksi("0 0 6 8 8 3 8 4 7 4 4 2","mim");
 //    inputPrediksi("1 0 4 4 2 2 8 5 8 2 5 6","fa");
-//    inputPrediksi("0 0 4 4 4 6 2 6 2 8 2 7","ha");
+//    inputPrediksi("0 0 4 4 4 6 2 6 2 8 2 7","habesar");
 //    inputPrediksi("0 0 4 4 3 2 1 6 4 1 4 6","waw");
 //    inputPrediksi("0 0 4 3 2 5 6 1 4 2 7 6","mim");
 //    inputPrediksi("2 0 6 6 5 8 2 7 6 4 1 2","tamarbuto");
@@ -667,8 +667,8 @@ public final class ArabicHMM {
 //    inputPrediksi("2 2 6 5 5 4 4 4 8 2 4 4","ya");
     
     
-    //kalimat 10
-//    inputPrediksi("2 2 6 6 6 6 6 6 6 6 6 6","alif");
+  //  kalimat 10
+//    inputPrediksi("0 0 6 6 6 6 6 6 6 6 6 6","alif");
 //    inputPrediksi("0 0 6 6 6 6 6 6 6 6 8 8","lam");
 //    inputPrediksi("0 0 4 4 5 5 8 8 8 8 8 8","ha");
 //    inputPrediksi("1 0 4 4 2 8 6 4 1 4 6 4","fa");

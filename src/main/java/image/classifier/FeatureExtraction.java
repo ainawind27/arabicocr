@@ -17,8 +17,8 @@ import java.util.Map;
 /**
  *
  * 
- * @author Albadr
- * @author Gazandi
+ * @aina
+ * 
  */
 public class FeatureExtraction {
 

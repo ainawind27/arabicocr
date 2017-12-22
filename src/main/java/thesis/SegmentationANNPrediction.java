@@ -13,9 +13,9 @@ public class SegmentationANNPrediction {
 	public static void main(String[] args) throws IOException {
 		File fileLocation = new File("D:\\filetestingsegmentation\\");
 		File input = new File(fileLocation, "kalimat1.png");
-//		File input = new File(fileLocation, "tah_kalimat10.png");
-//		File input = new File(fileLocation, "ar_kalimat10.png");	
-		
+//		File input = new File(fileLocation, "tah_kalimat3.png");
+//		File input = new File(fileLocation, "ar_kalimat3.png");	
+		// test data
 		//kalimat1, hasil 79%
 		String[] expectedResult = { "alif", "lamalif", "ha" , "ta", "ra", 
 									"alif", "mim", 
@@ -56,13 +56,13 @@ public class SegmentationANNPrediction {
 //									"ya", "alif", "nun","alif", "lamalif",
 //									"dzal" , "waw", "alif", "qaf" , "jim", "ya", "dal", 
 //									"tamarbuto"};
-		
+//		
 		//kalimat4, hasil 76%
 //		String[] expectedResult = { "ta", "ta", "kha" , "lam", "ya", 
 //									"alif", "ba", 
 //									"dal", "alif", "fa", "ya", "alif", "lam",
 //									"ha", "ya", "alif", "tamarbuto"};
-		
+//		
 		//ar_kalimat4
 //		String[] expectedResult = { "ta", "ta", "kha" , "ya", 
 //									"alif", "ba", 
@@ -109,7 +109,7 @@ public class SegmentationANNPrediction {
 //		String[] expectedResult = { "jim", "dal", "tamarbuto" , "alif", "lamalif", 
 //									"ra", "za", 
 //									"alif", "lam", "mim", "tho", "ba", "waw",
-//									"jim"};
+//									"kha"};
 //		//kalimat9, hasil 72%
 //		String[] expectedResult = { "ya", "ta", "kaf" , "lam", "mim", 
 //									"ba", "ba", 

@@ -18,12 +18,7 @@ public class SingleANNPrediction {
 //		File folder = new File ("D:\\font tesis aina\\font microsoft sans serif\\huruf_tunggal\\");
 //		File folder = new File ("D:\\font tesis aina\\font segoe ui\\huruf tunggal\\");
 //		File folder = new File ("D:\\font tesis aina\\font nazanin\\huruf tunggal");
-		
-		
-		
-		
-		
-		
+	
 		
 		File folder1 = new File(folder, "zhangsuen");
 		File featuresFile = new File(folder1, "zhangsuen.Features.json");

@@ -116,14 +116,27 @@ public class ReadJson {
 
                 }
                 
+//                for (int k = 0 ; k<features.length ;k++) {
+//                	System.out.println(features[0][0]+"T");
+//                	System.out.println(features[1][0]+"P");
+//              //  	System.out.println( features[k][2]);
+//                	
+//                	//  	for (int l = 0; l<features[k].length;l++) {
+//               		
+//                	//        	}
+//                	 
+//                }
+//                System.out.println();
+                
                 for (int k = 0 ; k<features.length ;k++) {
                 	System.out.println(features[k][0] + " " + features[k][1] + " " + features[k][2]);
-                	for (int l = 0; l<features[k].length;l++) {
+                	//  	for (int l = 0; l<features[k].length;l++) {
                		
-                	}
+                	//        	}
                 	 
                 }
-                System.out.println();
+                
+               System.out.println();
                
 
             }

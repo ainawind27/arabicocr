@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Albadr
- * @author Gazandi
+ * @
+ * @
  */
 public class MainbodySOSet {
 

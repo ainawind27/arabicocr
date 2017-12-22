@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 gazandic.
+ * 
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import utils.STDChainCode;
 
 /**
  *
- * @author gazandic
+ * 
  */
 public class ArabicOCR {
 	private static final Logger LOG = LoggerFactory.getLogger(ArabicOCR.class);

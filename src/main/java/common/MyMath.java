@@ -11,8 +11,8 @@ import java.util.Calendar;
 
 /**
  *
- * @author Albadr
- * @author Gazandi
+ * 
+ * 
  */
 public class MyMath {
 
